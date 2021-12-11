@@ -2,6 +2,8 @@
 
 import "zx/globals";
 
+$.verbose = false;
+
 const rootDir = path.resolve(__dirname, "../");
 cd(rootDir);
 
