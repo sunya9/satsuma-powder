@@ -30,13 +30,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         }}
       />
       <Head>
-        <Head>
-          <link rel="icon" type="image/png" href={config.icon} />
-          <link rel="dns-prefetch" href="//firebasestorage.googleapis.com" />
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width,initial-scale=1" />
-          <meta name="format-detection" content="telephone=no" />
-        </Head>
+        <link rel="icon" type="image/png" href={config.icon} />
+        <link rel="dns-prefetch" href="//firebasestorage.googleapis.com" />
+        <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="format-detection" content="telephone=no" />
       </Head>
       <Component {...pageProps} />
     </>
