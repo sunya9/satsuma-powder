@@ -2,6 +2,7 @@ import { PostOrPage } from "@tryghost/content-api";
 import Link from "next/link";
 import { formatDate } from "../lib/date";
 import InnerHTML from "dangerously-set-html-content";
+import Head from "next/head";
 
 interface Props {
   postOrPage: PostOrPage;
@@ -26,6 +27,10 @@ export const Article = ({
           </time>
         </p>
       )}
+      <Head>
+        {newerPost && <link rel="prev" href={`/blog/${newerPost.slug}`} />}
+        {olderPost && <link rel="next" href={`/blog/${olderPost.slug}`} />}
+      </Head>
       <InnerHTML html={postOrPage.html || ""} />
       <footer>
         {(newerPost || olderPost) && (
@@ -41,7 +46,7 @@ export const Article = ({
                 ）
                 <br />
                 <Link href={`/blog/${newerPost.slug}`} passHref>
-                  <a rel="prev">{newerPost.title}</a>
+                  <a>{newerPost.title}</a>
                 </Link>
               </li>
             )}
@@ -56,7 +61,7 @@ export const Article = ({
                 ）
                 <br />
                 <Link href={`/blog/${olderPost.slug}`} passHref>
-                  <a rel="next">{olderPost.title}</a>
+                  <a>{olderPost.title}</a>
                 </Link>
               </li>
             )}
