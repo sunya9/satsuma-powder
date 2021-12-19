@@ -1,5 +1,6 @@
 import { PostOrPage } from "@tryghost/content-api";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { AppLayout } from "../componments/AppLayout";
 import { Articles } from "../componments/Articles";
@@ -12,6 +13,9 @@ interface Props {
 const Index = (props: Props) => {
   return (
     <AppLayout>
+      <Head>
+        <link rel="next" href="/blog/" />
+      </Head>
       <h2>最近の記事</h2>
       <Articles posts={props.posts} />
       <Link href="/blog/">もっと読む</Link>
