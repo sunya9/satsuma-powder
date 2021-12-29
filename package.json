@@ -6,7 +6,8 @@
     "build": "yarn fetch && next build",
     "start": "next start",
     "lint": "next lint",
-    "fetch": "./scripts/fetch.mjs"
+    "fetch": "./scripts/fetch.mjs",
+    "ci": "yarn build"
   },
   "dependencies": {
     "@tryghost/content-api": "1.5.16",
