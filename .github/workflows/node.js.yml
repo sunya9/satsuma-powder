@@ -24,5 +24,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: yarn
+      - uses: actions/cache@v2
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - run: yarn
       - run: yarn ci
