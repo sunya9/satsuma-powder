@@ -139,10 +139,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@tryghost/content-api@1.5.17":
-  version "1.5.17"
-  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.5.17.tgz#b0d1df2c030b9ff045f5e7db5088174e4a0d5259"
-  integrity sha512-O7Zl7UH5XKbhkwHIVidYgiUiGa5D3Sofli3GwNpxPtC+t9Y3wt/0VnI7brG9qLerWjehZFsyGgT/dv+yJoBtjw==
+"@tryghost/content-api@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.6.0.tgz#232e79e63d1ccd27383b1206c0e1a140e995e1bd"
+  integrity sha512-rIQNn5SB/aDVxNdhPya6p+SgSqERxmWDXjhFbUWPjiP+oOqlYKugL++Y+g7dRqAnNOnkRh3A7GuscXRI8m5Wfg==
   dependencies:
     axios "^0.21.1"
 
