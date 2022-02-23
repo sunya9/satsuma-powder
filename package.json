@@ -10,7 +10,7 @@
     "ci": "yarn build"
   },
   "dependencies": {
-    "@tryghost/content-api": "1.6.0",
+    "@tryghost/content-api": "1.6.1",
     "dangerously-set-html-content": "1.0.9",
     "next": "12.1.0",
     "normalize.css": "8.0.1",
