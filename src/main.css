@@ -1,7 +1,7 @@
 :root {
-  --degree: 187;
-  --saturation: 100%;
-  --lightness: 35%;
+  --degree: 236;
+  --saturation: 50%;
+  --lightness: 49%;
   --background-body: #f9f9f9;
   --code: var(--text-main);
   --links: hsl(var(--degree), var(--saturation), var(--lightness));
