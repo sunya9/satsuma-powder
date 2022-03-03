@@ -1,5 +1,6 @@
 import { PostOrPage } from "@tryghost/content-api";
-import { InferGetStaticPropsType } from "next";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import React from "react";
 import { AppLayout } from "../../componments/AppLayout";
 import { Articles } from "../../componments/Articles";
 import { ghostRepo } from "../../lib/ghost";
@@ -9,22 +10,22 @@ const Index = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     .map((string) => +string)
     .sort((a, b) => b - a);
   return (
-    <AppLayout title="全ての記事">
-      <h2>全ての記事</h2>
+    <AppLayout title="全ての投稿">
+      <h1>全ての投稿</h1>
       {years.map((year) => {
         return (
-          <section key={year}>
-            <h6>
-              {year}年（{props.postsPerYear[year].length}件）
-            </h6>
-            <Articles posts={props.postsPerYear[year]} withoutyear />
-          </section>
+          <React.Fragment key={year}>
+            <h2>
+              {year}年 <small>{props.postsPerYear[year].length}件</small>
+            </h2>
+            <Articles posts={props.postsPerYear[year]} />
+          </React.Fragment>
         );
       })}
     </AppLayout>
   );
 };
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const posts = await ghostRepo.getPosts();
   const postsPerYear = posts
     .sort((a, b) => {

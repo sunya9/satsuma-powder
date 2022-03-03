@@ -35,36 +35,35 @@ class GhostRepository {
   }
 
   getPost(slug: string) {
-    return this.contentApi.posts.read({ slug }).catch(console.error);
+    return this.contentApi.posts.read({ slug });
   }
 
   getPage(slug: string) {
     return this.contentApi.pages.read({ slug });
   }
 
-  getNewerPost(publishedAt?: Nullable<string>) {
+  async getNewerPost(publishedAt?: Nullable<string>) {
     const filter = `published_at:>${encodeURIComponent(publishedAt || "")}`;
-    return this.contentApi.posts
-      .browse({
-        fields: ["title", "slug", "id", "published_at"],
-        filter,
-        limit: 1,
-        page: 1,
-        order: "published_at asc",
-      })
-      .then((res) => res[0]);
+    const res = await this.contentApi.posts.browse({
+      fields: ["title", "slug", "id", "published_at"],
+      filter,
+      limit: 1,
+      page: 1,
+      order: "published_at asc",
+    });
+    return res[0];
   }
-  getOlderPost(publishedAt?: Nullable<string>) {
+
+  async getOlderPost(publishedAt?: Nullable<string>) {
     const filter = `published_at:<${encodeURIComponent(publishedAt || "")}`;
-    return this.contentApi.posts
-      .browse({
-        fields: ["title", "slug", "id", "published_at"],
-        filter,
-        limit: 1,
-        page: 2,
-        order: "published_at desc",
-      })
-      .then((res) => res[0]);
+    const res = await this.contentApi.posts.browse({
+      fields: ["title", "slug", "id", "published_at"],
+      filter,
+      limit: 1,
+      page: 2,
+      order: "published_at desc",
+    });
+    return res[0];
   }
 
   async getSettings() {

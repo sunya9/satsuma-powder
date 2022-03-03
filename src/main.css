@@ -1,0 +1,14 @@
+:root {
+  --degree: 187;
+  --saturation: 100%;
+  --lightness: 35%;
+  --background-body: #f9f9f9;
+  --code: var(--text-main);
+  --links: hsl(var(--degree), var(--saturation), var(--lightness));
+  --focus: hsla(var(--degree), var(--saturation), var(--lightness), 0.7);
+  --background: transparent;
+  --selection: hsla(var(--degree), var(--saturation), var(--lightness), 0.2);
+}
+body {
+  line-height: 1.75;
+}

@@ -1,8 +1,8 @@
 import { config } from "../lib/config";
-import { Fragment, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-import { ActiveLink } from "./ActiveLink";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 interface Props {
   title?: string;
@@ -10,12 +10,12 @@ interface Props {
 }
 
 export const AppLayout: React.FC<Props> = (props) => {
+  const router = useRouter();
+  const isIndex = router.asPath === "/";
   return (
-    <div key="appLayout">
+    <React.Fragment key="appLayout">
       <Head>
-        <title>
-          {props.title ? `${props.title} - ${config.title}` : `${config.title}`}
-        </title>
+        <title>{props.title ? `${props.title}` : `${config.title}`}</title>
         <meta
           name="description"
           content={props.description || config.description}
@@ -23,39 +23,19 @@ export const AppLayout: React.FC<Props> = (props) => {
       </Head>
 
       <header key="appHeader">
-        <h1>{config.title}</h1>
-        <p>{config.description}</p>
-        <nav>
-          {config.navigation.map((nav, i, ary) => (
-            <Fragment key={nav.url}>
-              <ActiveLink key={nav.url} href={nav.url}>
-                {nav.label}
-              </ActiveLink>
-              {i < ary.length - 1 && "\u2007"}
-            </Fragment>
-          ))}
-        </nav>
+        {isIndex ? <h1>{config.title}</h1> : <Link href="/">ホームに戻る</Link>}
+
+        <p>
+          <small>{isIndex && config.description}</small>
+        </p>
       </header>
       <main key="appContents">{props.children}</main>
-
-      <hr />
       <footer>
-        <div>
-          {config.secondary_navigation.map((nav, i, ary) => (
-            <Fragment key={nav.url}>
-              <a key={nav.url} href={nav.url}>
-                {nav.label}
-              </a>
-              {i < ary.length - 1 && "\u2007"}
-            </Fragment>
-          ))}
-        </div>
-        <small>
-          © {config.title}
-          {"\u2007"}
+        <p>
+          ©&nbsp;
           <a href={`https://twitter.com/${config.twitter}`}>@ephemeralMocha</a>
-        </small>
+        </p>
       </footer>
-    </div>
+    </React.Fragment>
   );
 };

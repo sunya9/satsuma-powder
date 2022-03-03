@@ -55,6 +55,5 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
       olderPost: olderPost || null,
       newerPost: newerPost || null,
     },
-    revalidate: 60,
   };
 };

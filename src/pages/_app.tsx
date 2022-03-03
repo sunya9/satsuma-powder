@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
-import "normalize.css";
-import "sakura.css";
+import "water.css/out/light.css";
 import "../cards.css";
+import "../main.css";
 import Script from "next/script";
 import { GA_TRACKING_ID, useGtag } from "../lib/gtag";
 import Head from "next/head";
@@ -37,6 +37,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="format-detection" content="telephone=no" />
       </Head>
+
       <Component {...pageProps} />
     </>
   );
