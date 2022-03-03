@@ -23,10 +23,16 @@ const Post = ({ post }: Props) => {
 
 export default Post;
 
+const exclusionPageSlugs = ["about"];
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await ghostRepo
     .getPages()
-    .then((res) => res.map((post) => post.slug));
+    .then((res) =>
+      res
+        .map((post) => post.slug)
+        .filter((slug) => !exclusionPageSlugs.includes(slug))
+    );
   return {
     paths: slugs.map((slug) => {
       return {
