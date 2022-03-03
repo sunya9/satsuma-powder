@@ -1870,7 +1870,7 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz#2de19618c66dc247dcfb6f99338035d8245a2cee"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
-water.css@^2.1.1:
+water.css@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/water.css/-/water.css-2.1.1.tgz#ee6fe833a313a3a2edb588a57ed62b3e31dedd18"
   integrity sha512-gkO5byC+pZ7ndEV18hs/RmxKoDtEZXx06tZU4ocI3IBdv4xV64tlhjIFbDjurysRnNkiy2oQTr8PakRyzZWPJw==
