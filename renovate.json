@@ -18,5 +18,8 @@
       ],
       "automerge": true
     }
+  ],
+  "reviewers": [
+    "@sunya9"
   ]
 }
