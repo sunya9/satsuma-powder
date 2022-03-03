@@ -18,7 +18,7 @@ const Index = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             <h2>
               {year}年 <small>{props.postsPerYear[year].length}件</small>
             </h2>
-            <Articles posts={props.postsPerYear[year]} />
+            <Articles posts={props.postsPerYear[year]} withoutyear />
           </React.Fragment>
         );
       })}

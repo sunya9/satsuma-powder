@@ -4,6 +4,7 @@ import { formatDate } from "../lib/date";
 
 interface Props {
   posts: PostOrPage[];
+  withoutyear?: true;
 }
 
 export const Articles = (props: Props) => {
@@ -13,7 +14,7 @@ export const Articles = (props: Props) => {
         <li key={post.id}>
           {post.published_at && (
             <time dateTime={post.published_at}>
-              {formatDate(post.published_at)}
+              {formatDate(post.published_at, props.withoutyear)}
             </time>
           )}
           {"\u2007"}
