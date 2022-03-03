@@ -20,6 +20,7 @@ export const Article = ({
   newerPost,
   hideTitle,
 }: Props) => {
+  const html = postOrPage.html || "";
   return (
     <React.Fragment>
       <article>
@@ -33,7 +34,11 @@ export const Article = ({
           {newerPost && <link rel="prev" href={`/blog/${newerPost.slug}`} />}
           {olderPost && <link rel="next" href={`/blog/${olderPost.slug}`} />}
         </Head>
-        <InnerHTML html={postOrPage.html || ""} />
+        {typeof window === "undefined" ? (
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+        ) : (
+          <InnerHTML html={html} />
+        )}
       </article>
       <ul>
         {newerPost && (
