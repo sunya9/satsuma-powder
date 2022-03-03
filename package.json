@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn fetch && next build",
+    "build": "yarn fetch && next build && next export",
     "start": "next start",
     "lint": "next lint",
     "fetch": "./scripts/fetch.mjs",
