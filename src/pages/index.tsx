@@ -21,15 +21,6 @@ const Index = (props: Props) => {
         <link rel="next" href="/blog/" />
       </Head>
       <Article postOrPage={props.about} hideTitle hideDate />
-
-      {config.secondary_navigation.map((nav, i, ary) => (
-        <React.Fragment key={nav.url}>
-          <a key={nav.url} href={nav.url}>
-            {nav.label}
-          </a>
-          {i < ary.length - 1 && "\u2007"}
-        </React.Fragment>
-      ))}
       <h2>最近の投稿</h2>
       <Articles posts={props.posts} />
       <p>
