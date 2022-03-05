@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "yarn fetch && next build && next export",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "fetch": "./scripts/fetch.mjs",
@@ -13,6 +14,7 @@
     "@tryghost/content-api": "1.6.2",
     "dangerously-set-html-content": "1.0.9",
     "next": "12.1.0",
+    "next-sitemap": "^2.5.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "water.css": "2.1.1"
