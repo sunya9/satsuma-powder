@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "fetch": "./scripts/fetch.mjs",
-    "ci": "yarn build"
+    "ci": "yarn build",
+    "fetch:default-style": "./scripts/fetch-default-style.mjs"
   },
   "dependencies": {
     "@tryghost/content-api": "1.6.3",
