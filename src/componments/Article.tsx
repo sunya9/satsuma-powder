@@ -1,9 +1,8 @@
 import { PostOrPage } from "@tryghost/content-api";
 import Link from "next/link";
 import { formatDate } from "../lib/date";
-import InnerHTML from "dangerously-set-html-content";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface Props {
   postOrPage: PostOrPage;
@@ -12,6 +11,32 @@ interface Props {
   newerPost?: PostOrPage;
   hideTitle?: boolean;
 }
+
+const DangerouslyHtml = ({ html }: { html: string }) => {
+  useEffect(() => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    const scripts = div.querySelectorAll("script");
+    const externalScriptElementsWithId = Array.from(scripts)
+      .filter((script) => script.src)
+      .map((script) => {
+        const id = `script-${Date.now()}`;
+        script.id = id;
+        const range = document.createRange();
+        const fragment = range.createContextualFragment(script.outerHTML);
+        return [id, fragment] as const;
+      });
+    externalScriptElementsWithId.forEach(([, script]) =>
+      document.head.appendChild(script)
+    );
+    return () => {
+      externalScriptElementsWithId.forEach(([id]) =>
+        document.getElementById(id)?.remove()
+      );
+    };
+  }, [html]);
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+};
 
 export const Article = ({
   postOrPage,
@@ -34,11 +59,7 @@ export const Article = ({
           {newerPost && <link rel="prev" href={`/blog/${newerPost.slug}`} />}
           {olderPost && <link rel="next" href={`/blog/${olderPost.slug}`} />}
         </Head>
-        {typeof window === "undefined" ? (
-          <div dangerouslySetInnerHTML={{ __html: html }} />
-        ) : (
-          <InnerHTML html={html} />
-        )}
+        <DangerouslyHtml html={html} />
       </article>
       <ul>
         {newerPost && (
