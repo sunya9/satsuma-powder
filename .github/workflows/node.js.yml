@@ -12,6 +12,7 @@ jobs:
     env:
       GHOST_URL: ${{ secrets.GHOST_URL }}
       GHOST_KEY: ${{ secrets.GHOST_KEY }}
+      GHOST_ADMIN_KEY: ${{ secrets.GHOST_ADMIN_KEY }}
 
     strategy:
       matrix:
