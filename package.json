@@ -3,14 +3,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn fetch && next build && next export",
-    "postbuild": "next-sitemap",
+    "build": "yarn fetch:config && next build && next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "fetch": "./scripts/fetch.mjs",
-    "ci": "yarn build"
+    "fetch:config": "./scripts/fetch-config.mjs",
+    "ci": "run-s fetch:config lint build",
+    "fetch:default-style": "./scripts/fetch-default-style.mjs"
   },
   "dependencies": {
+    "@tryghost/admin-api": "^1.8.0",
     "@tryghost/content-api": "1.6.3",
     "next": "12.1.0",
     "next-sitemap": "2.5.4",
@@ -25,6 +26,7 @@
     "@types/tryghost__content-api": "1.3.10",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "2.5.1",
     "typescript": "4.6.2",
     "zx": "4.3.0"

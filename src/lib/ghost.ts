@@ -5,8 +5,11 @@ import GhostContentAPI, {
 } from "@tryghost/content-api";
 import { env } from "./env";
 
+import GhostAdminAPI from "@tryghost/admin-api";
+
 class GhostRepository {
   private contentApi: GhostAPI;
+  private adminApi: GhostAdminAPI;
   private settings!: Settings;
   url: string;
 
@@ -15,6 +18,11 @@ class GhostRepository {
     this.contentApi = new GhostContentAPI({
       url: this.url,
       key: env.key,
+      version: "v3",
+    });
+    this.adminApi = new GhostAdminAPI({
+      url: this.url,
+      key: env.adminKey,
       version: "v3",
     });
     this.getSettings();
@@ -69,6 +77,21 @@ class GhostRepository {
   async getSettings() {
     if (!this.settings) this.settings = await this.contentApi.settings.browse();
     return this.settings;
+  }
+
+  async getDraft(uuid: string) {
+    const postsPromise = this.adminApi.posts.browse({
+      limit: "all",
+      filter: ["status:draft"],
+      formats: ["html"],
+    });
+    const pagesPromise = this.adminApi.pages.browse({
+      limit: "all",
+      filter: ["status:draft"],
+      formats: ["html"],
+    });
+    const [posts, pages] = await Promise.all([postsPromise, pagesPromise]);
+    return [...posts, ...pages].find((postOrPage) => postOrPage.uuid === uuid);
   }
 }
 

@@ -4,10 +4,9 @@ import "zx/globals";
 
 $.verbose = false;
 
-const rootDir = path.resolve(__dirname, "../");
-cd(rootDir);
+cd(path.resolve(__dirname, "../"));
 
-await fetch(
+const res = await fetch(
   `${process.env.GHOST_URL}/ghost/api/v3/content/settings?key=${process.env.GHOST_KEY}`
 )
   .then((res) => res.text())

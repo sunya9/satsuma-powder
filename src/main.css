@@ -12,3 +12,16 @@
 body {
   line-height: 1.75;
 }
+
+.kg-card {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+.kg-bookmark-card {
+  font-size: 0.6rem;
+}
+
+pre > code {
+  background: #efefef;
+}
