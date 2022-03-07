@@ -1,10 +1,9 @@
 {
   "name": "satsuma-powder",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "yarn fetch:config && next build && next export && next-sitemap",
+    "build": "yarn fetch:config && next build && next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "fetch:config": "./scripts/fetch-config.mjs",
@@ -12,6 +11,7 @@
     "fetch:default-style": "./scripts/fetch-default-style.mjs"
   },
   "dependencies": {
+    "@tryghost/admin-api": "^1.8.0",
     "@tryghost/content-api": "1.6.3",
     "next": "12.1.0",
     "next-sitemap": "2.5.4",
