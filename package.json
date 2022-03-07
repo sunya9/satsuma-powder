@@ -11,7 +11,7 @@
     "ci": "yarn build"
   },
   "dependencies": {
-    "@tryghost/content-api": "1.6.2",
+    "@tryghost/content-api": "1.6.3",
     "next": "12.1.0",
     "next-sitemap": "2.5.4",
     "react": "17.0.2",
