@@ -38,3 +38,6 @@ yarn-error.log*
 
 site.json
 public/rss.xml
+
+public/sitemap*.xml
+public/robots.txt
