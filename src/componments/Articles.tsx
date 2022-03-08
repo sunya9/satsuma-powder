@@ -1,6 +1,6 @@
 import type { PostOrPage } from "@tryghost/content-api";
-import Link from "next/link";
 import { formatDate } from "../lib/date";
+import { FocusableLink } from "./FocusableLink";
 
 interface Props {
   posts: PostOrPage[];
@@ -18,7 +18,9 @@ export const Articles = (props: Props) => {
             </time>
           )}
           {"\u2007"}
-          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+          <FocusableLink href={`/blog/${post.slug}`}>
+            {post.title}
+          </FocusableLink>
         </li>
       ))}
     </ul>

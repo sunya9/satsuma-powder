@@ -6,9 +6,24 @@ import Script from "next/script";
 import { GA_TRACKING_ID, useGtag } from "../lib/gtag";
 import Head from "next/head";
 import { config } from "../lib/config";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   useGtag();
+  const router = useRouter();
+  useEffect(() => {
+    const clearFocus = () => {
+      if (!(document.activeElement instanceof HTMLElement)) return;
+      document.activeElement.blur();
+      // reset focus index
+      document.body.focus({ preventScroll: true });
+    };
+    router.events.on("routeChangeComplete", clearFocus);
+    return () => {
+      router.events.off("routeChangeComplete", clearFocus);
+    };
+  }, [router.events]);
   return (
     <>
       <Script

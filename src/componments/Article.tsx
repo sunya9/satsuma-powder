@@ -1,8 +1,12 @@
 import { PostOrPage } from "@tryghost/content-api";
-import Link from "next/link";
 import { formatDate } from "../lib/date";
 import Head from "next/head";
 import React, { useEffect } from "react";
+import { FocusableLink } from "./FocusableLink";
+import { useRef } from "react";
+import { useLayoutEffect } from "react";
+import { useCallback } from "react";
+import { useState } from "react";
 
 interface Props {
   postOrPage: PostOrPage;
@@ -35,7 +39,18 @@ const DangerouslyHtml = ({ html }: { html: string }) => {
       );
     };
   }, [html]);
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  const div = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    div.current?.querySelectorAll("a").forEach((a) => (a.tabIndex = 0));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [html]);
+  return (
+    <div
+      ref={(el) => (div.current = el)}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
 };
 
 export const Article = ({
@@ -71,9 +86,9 @@ export const Article = ({
               </time>
             )}
             ）
-            <Link href={`/blog/${newerPost.slug}`} passHref>
-              <a>{newerPost.title}</a>
-            </Link>
+            <FocusableLink href={`/blog/${newerPost.slug}`}>
+              {newerPost.title}
+            </FocusableLink>
           </li>
         )}
         {olderPost && (
@@ -85,9 +100,9 @@ export const Article = ({
               </time>
             )}
             ）
-            <Link href={`/blog/${olderPost.slug}`} passHref>
-              <a>{olderPost.title}</a>
-            </Link>
+            <FocusableLink href={`/blog/${olderPost.slug}`}>
+              {olderPost.title}
+            </FocusableLink>
           </li>
         )}
       </ul>
