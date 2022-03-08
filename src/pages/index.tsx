@@ -20,8 +20,10 @@ const Index = (props: Props) => {
         <link rel="next" href="/blog/" />
       </Head>
       <Article postOrPage={props.about} hideTitle hideDate />
-      <h2>最近の投稿</h2>
-      <Articles posts={props.posts} />
+      <section aria-labelledby="recent-entries">
+        <h2 id="recent-entries">最近の投稿</h2>
+        <Articles posts={props.posts} />
+      </section>
       <p>
         <FocusableLink href="/blog/">全ての投稿</FocusableLink>
       </p>

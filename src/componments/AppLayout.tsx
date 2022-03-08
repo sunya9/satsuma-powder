@@ -24,14 +24,17 @@ export const AppLayout: React.FC<Props> = (props) => {
 
       <header key="appHeader">
         {isIndex ? (
-          <h1>{config.title}</h1>
+          <>
+            <h1>{config.title}</h1>
+            <p>
+              <small>{config.description}</small>
+            </p>
+          </>
         ) : (
-          <FocusableLink href="/">ホームに戻る</FocusableLink>
+          <nav>
+            <FocusableLink href="/">ホームに戻る</FocusableLink>
+          </nav>
         )}
-
-        <p>
-          <small>{isIndex && config.description}</small>
-        </p>
       </header>
       <main key="appContents">{props.children}</main>
       <footer>
