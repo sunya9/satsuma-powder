@@ -6,7 +6,6 @@ import React from "react";
 import { AppLayout } from "../componments/AppLayout";
 import { Article } from "../componments/Article";
 import { Articles } from "../componments/Articles";
-import { config } from "../lib/config";
 import { ghostRepo } from "../lib/ghost";
 
 interface Props {

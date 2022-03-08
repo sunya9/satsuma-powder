@@ -1,10 +1,5 @@
 import { PostOrPage } from "@tryghost/content-api";
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { AppLayout } from "../componments/AppLayout";
 import { Article } from "../componments/Article";
 import { ghostRepo } from "../lib/ghost";
