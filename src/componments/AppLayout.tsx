@@ -1,8 +1,8 @@
 import { config } from "../lib/config";
 import React from "react";
-import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { FocusableLink } from "./FocusableLink";
 
 interface Props {
   title?: string;
@@ -23,17 +23,26 @@ export const AppLayout: React.FC<Props> = (props) => {
       </Head>
 
       <header key="appHeader">
-        {isIndex ? <h1>{config.title}</h1> : <Link href="/">ホームに戻る</Link>}
-
-        <p>
-          <small>{isIndex && config.description}</small>
-        </p>
+        {isIndex ? (
+          <>
+            <h1>{config.title}</h1>
+            <p>
+              <small>{config.description}</small>
+            </p>
+          </>
+        ) : (
+          <nav>
+            <FocusableLink href="/">ホームに戻る</FocusableLink>
+          </nav>
+        )}
       </header>
       <main key="appContents">{props.children}</main>
       <footer>
         <p>
           ©&nbsp;
-          <a href={`https://twitter.com/${config.twitter}`}>@ephemeralMocha</a>
+          <FocusableLink href={`https://twitter.com/${config.twitter}`}>
+            @ephemeralMocha
+          </FocusableLink>
         </p>
       </footer>
     </React.Fragment>

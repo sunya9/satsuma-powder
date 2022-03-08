@@ -1,11 +1,11 @@
 import { PostOrPage } from "@tryghost/content-api";
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import React from "react";
 import { AppLayout } from "../componments/AppLayout";
 import { Article } from "../componments/Article";
 import { Articles } from "../componments/Articles";
+import { FocusableLink } from "../componments/FocusableLink";
 import { ghostRepo } from "../lib/ghost";
 
 interface Props {
@@ -20,10 +20,12 @@ const Index = (props: Props) => {
         <link rel="next" href="/blog/" />
       </Head>
       <Article postOrPage={props.about} hideTitle hideDate />
-      <h2>最近の投稿</h2>
-      <Articles posts={props.posts} />
+      <section aria-labelledby="recent-entries">
+        <h2 id="recent-entries">最近の投稿</h2>
+        <Articles posts={props.posts} />
+      </section>
       <p>
-        <Link href="/blog/">全ての投稿</Link>
+        <FocusableLink href="/blog/">全ての投稿</FocusableLink>
       </p>
     </AppLayout>
   );
