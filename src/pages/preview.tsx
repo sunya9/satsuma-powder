@@ -1,6 +1,5 @@
 import { PostOrPage } from "@tryghost/content-api";
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
-import { ParsedUrlQuery } from "querystring";
+import { GetServerSideProps } from "next";
 import { AppLayout } from "../componments/AppLayout";
 import { Article } from "../componments/Article";
 import { ghostRepo } from "../lib/ghost";
@@ -9,7 +8,7 @@ interface Props {
   draft: PostOrPage;
 }
 
-const Post = ({ draft }: Props) => {
+const Preview = ({ draft }: Props) => {
   return (
     <AppLayout title={draft.title}>
       <Article postOrPage={draft} />
@@ -17,15 +16,15 @@ const Post = ({ draft }: Props) => {
   );
 };
 
-export default Post;
+export default Preview;
 
 interface PreviewData {
   uuid: string;
 }
 
-export const getStaticProps: GetServerSideProps<
+export const getServerSideProps: GetServerSideProps<
   Props,
-  {},
+  Record<string, never>,
   PreviewData
 > = async (context) => {
   const uuid = context.previewData?.uuid;
