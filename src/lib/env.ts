@@ -5,8 +5,16 @@ const getEnvValue = (key: string) => {
 };
 
 export const env = {
-  url: getEnvValue("GHOST_URL"),
-  key: getEnvValue("GHOST_KEY"),
-  adminKey: getEnvValue("GHOST_ADMIN_KEY"),
-  gaId: process.env.NEXT_PUBLIC_GA_ID,
+  get url() {
+    return getEnvValue("GHOST_URL");
+  },
+  get key() {
+    return getEnvValue("GHOST_KEY");
+  },
+  get adminKey() {
+    return getEnvValue("GHOST_ADMIN_KEY");
+  },
+  get gaId() {
+    return process.env.NEXT_PUBLIC_GA_ID || "";
+  },
 } as const;

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { env } from "./env";
 
-export const GA_TRACKING_ID = env.gaId || "";
+export const GA_TRACKING_ID = env.gaId;
 
 export const pageview = (url: string) => {
   window.gtag("config", GA_TRACKING_ID, {
