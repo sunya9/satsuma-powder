@@ -11,7 +11,7 @@
     "fetch:default-style": "./scripts/fetch-default-style.mjs"
   },
   "dependencies": {
-    "@tryghost/admin-api": "^1.8.0",
+    "@tryghost/admin-api": "1.8.0",
     "@tryghost/content-api": "1.7.1",
     "next": "12.1.0",
     "next-sitemap": "2.5.10",
@@ -28,7 +28,7 @@
     "@typescript-eslint/parser": "5.15.0",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all": "4.1.5",
     "prettier": "2.6.0",
     "typescript": "4.6.2",
     "zx": "4.3.0"
