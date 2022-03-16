@@ -144,7 +144,7 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@tryghost/admin-api@^1.8.0":
+"@tryghost/admin-api@1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@tryghost/admin-api/-/admin-api-1.8.0.tgz#9f92350290e2df2506ae3beba445943752b62d27"
   integrity sha512-agwklvpwQr8Dpt8FtFd/XY6CumtZ3aaKGq2dgkcSPWnaQsVbuPEQOqpyrJBChEypC5t+xMp5f9rhPwR7fDl+tA==
@@ -1679,7 +1679,7 @@ normalize-package-data@^2.3.2:
     semver "2 || 3 || 4 || 5"
     validate-npm-package-license "^3.0.1"
 
-npm-run-all@^4.1.5:
+npm-run-all@4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/npm-run-all/-/npm-run-all-4.1.5.tgz#04476202a15ee0e2e214080861bff12a51d98fba"
   integrity sha512-Oo82gJDAVcaMdi3nuoKFavkIHBRVqQ1qvMb+9LHk/cF4P6B2m8aP04hGf7oL6wZ9BuGwX1onlLhpuoofSyoQDQ==
