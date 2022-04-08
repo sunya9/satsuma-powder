@@ -1,13 +1,18 @@
 import Link from "next/link";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 interface Props {
   external?: boolean;
 }
 
-export const FocusableLink: React.FC<
+export const FocusableLink = ({
+  tabIndex,
+  href,
+  external,
+  ...rest
+}: PropsWithChildren<
   React.AnchorHTMLAttributes<HTMLAnchorElement> & Props
-> = ({ tabIndex, href, external, ...rest }) => {
+>) => {
   if (external || href?.startsWith("http")) {
     return <a tabIndex={tabIndex || 0} {...rest} />;
   } else {
