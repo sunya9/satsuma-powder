@@ -1,5 +1,5 @@
 import { config } from "../lib/config";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FocusableLink } from "./FocusableLink";
@@ -9,7 +9,7 @@ interface Props {
   description?: string;
 }
 
-export const AppLayout: React.FC<Props> = (props) => {
+export const AppLayout = (props: PropsWithChildren<Props>) => {
   const router = useRouter();
   const isIndex = router.asPath === "/";
   return (
