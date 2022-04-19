@@ -11,7 +11,7 @@
     "fetch:default-style": "./scripts/fetch-default-style.mjs"
   },
   "dependencies": {
-    "@tryghost/admin-api": "1.11.1",
+    "@tryghost/admin-api": "1.11.2",
     "@tryghost/content-api": "1.9.0",
     "next": "12.1.5",
     "next-sitemap": "2.5.20",
