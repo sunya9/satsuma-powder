@@ -158,12 +158,12 @@
     form-data "^4.0.0"
     jsonwebtoken "^8.4.0"
 
-"@tryghost/content-api@1.9.1":
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.9.1.tgz#db4490b918b0e5b94da8ecf5f67dc32110d109aa"
-  integrity sha512-kWnhVxonWzcm3IiLaTXwA/Elnpt3BLaMpRUGUkGaFuGksz4HEnMKD+uP3AueEbV3XWx1ntY4Vvblp0kbIZRPWg==
+"@tryghost/content-api@1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.9.2.tgz#9986744c35b8a870b8100dcc52ccdfb655b894dc"
+  integrity sha512-9A9mVDziDzVbyjzhdKCdDlaNSyLVay3+kPjAmrAPiY1omSuR9msr/8kWELEJCDMntMNN0KNrKLB3UUt9KbAOwg==
   dependencies:
-    axios "^0.21.1"
+    axios "^0.27.0"
 
 "@types/fs-extra@^9.0.12":
   version "9.0.13"
@@ -419,13 +419,6 @@ axe-core@^4.3.5:
   version "4.3.5"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.3.5.tgz#78d6911ba317a8262bfee292aeafcc1e04b49cc5"
   integrity sha512-WKTW1+xAzhMS5dJsxWkliixlO/PqC4VhmO9T4juNYcaTg9jzWiJsou6m5pxWYGfigWbwzJWeFY6z47a+4neRXA==
-
-axios@^0.21.1:
-  version "0.21.4"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
-  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
-  dependencies:
-    follow-redirects "^1.14.0"
 
 axios@^0.27.0:
   version "0.27.2"
@@ -1006,11 +999,6 @@ flatted@^3.1.0:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.4.tgz#28d9969ea90661b5134259f312ab6aa7929ac5e2"
   integrity sha512-8/sOawo8tJ4QOBX8YlQBMxL8+RLZfxMQOif9o0KUKTNTjMYElWPE0r/m5VNFxTRd0NSw8qSy8dajrwX4RYI1Hw==
-
-follow-redirects@^1.14.0:
-  version "1.14.6"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.6.tgz#8cfb281bbc035b3c067d6cd975b0f6ade6e855cd"
-  integrity sha512-fhUl5EwSJbbl8AR+uYL2KQDxLkdSjZGR36xy46AO7cOMTrCMON6Sa28FmAnC2tRTDbd/Uuzz3aJBv7EBN7JH8A==
 
 follow-redirects@^1.14.9:
   version "1.15.0"
