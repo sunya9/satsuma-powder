@@ -149,10 +149,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.3.tgz#6801033be7ff87a6b7cadaf5b337c9f366a3c4b0"
   integrity sha512-WiBSI6JBIhC6LRIsB2Kwh8DsGTlbBU+mLRxJmAe3LjHTdkDpwIbEOZgoXBbZilk/vlfjK8i6nKRAvIRn1XaIMw==
 
-"@tryghost/admin-api@1.11.3":
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/@tryghost/admin-api/-/admin-api-1.11.3.tgz#c6b770ac265d57532bb9740e3cfde0f09d52e76c"
-  integrity sha512-I6REmTsPXPZSqBRsQq5l84WEP27QBJ7HzAhxX2vIVxdcpdAD0dP9qFOvs2gXJy0j6Lm+vQZ+XsN2s3mbWyFdOg==
+"@tryghost/admin-api@1.11.4":
+  version "1.11.4"
+  resolved "https://registry.yarnpkg.com/@tryghost/admin-api/-/admin-api-1.11.4.tgz#5f782171e2ee893b9b0c946ed00986a3d610590e"
+  integrity sha512-UzxIt/BoTLlvanDT7dJ7kOOY17bFzYOm2UN/HVG+2bP5G2pWrrCyHiywPCS4OvhWdieyCtGpa2f5ZFi0YdwAKg==
   dependencies:
     axios "^0.27.0"
     form-data "^4.0.0"
