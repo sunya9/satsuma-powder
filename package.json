@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@tryghost/admin-api": "1.12.0",
-    "@tryghost/content-api": "1.9.6",
+    "@tryghost/content-api": "1.9.7",
     "next": "12.1.6",
     "next-sitemap": "2.5.20",
     "react": "18.1.0",
