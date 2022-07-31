@@ -5,7 +5,7 @@
       "destination": "/rss.xml"
     }
   ],
-  "trailingSlash": true,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/:year(\\d{4,})/:month(\\d{2,})/:day(\\d{2,})/:slug",
