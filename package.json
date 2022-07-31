@@ -1,6 +1,7 @@
 {
   "name": "satsuma-powder",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "yarn fetch:config && next build && next-sitemap",
