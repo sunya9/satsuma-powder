@@ -16,10 +16,6 @@ export const FocusableLink = ({
   if (external || href?.startsWith("http")) {
     return <a tabIndex={tabIndex || 0} {...rest} />;
   } else {
-    return (
-      <Link href={href || ""} passHref>
-        <a tabIndex={tabIndex || 0} {...rest} />
-      </Link>
-    );
+    return <Link href={href || ""} tabIndex={tabIndex || 0} {...rest} />;
   }
 };
