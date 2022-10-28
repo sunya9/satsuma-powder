@@ -12,7 +12,7 @@ interface Props {
 
 export const AppLayout = (props: PropsWithChildren<Props>) => {
   const router = useRouter();
-  const isIndex = router.asPath === "/";
+  const isIndex = router.pathname === "/";
   return (
     <React.Fragment key="appLayout">
       <Head>
