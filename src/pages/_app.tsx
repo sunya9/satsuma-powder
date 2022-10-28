@@ -8,6 +8,7 @@ import Head from "next/head";
 import { config } from "../lib/config";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { isDev } from "../lib/util";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   useGtag();
@@ -26,15 +27,17 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [router.events]);
   return (
     <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
+      {!isDev && (
+        <>
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <Script
+            id="gtag-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -42,8 +45,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               page_path: window.location.pathname,
             });
           `,
-        }}
-      />
+            }}
+          />
+        </>
+      )}
       <Head>
         <link rel="icon" type="image/png" href={config.icon} />
         <link rel="dns-prefetch" href="//firebasestorage.googleapis.com" />

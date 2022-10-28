@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { env } from "./env";
+import { isDev } from "./util";
 
 export const GA_TRACKING_ID = env.gaId;
 
 export const pageview = (url: string) => {
+  if (isDev) return;
   window.gtag("config", GA_TRACKING_ID, {
     page_path: url,
   });
@@ -13,6 +15,7 @@ export const pageview = (url: string) => {
 export const useGtag = () => {
   const router = useRouter();
   useEffect(() => {
+    if (isDev) return;
     const handleRouteChange = (url: string) => {
       pageview(url);
     };
