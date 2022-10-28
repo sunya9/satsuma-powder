@@ -45,7 +45,7 @@ export const AppLayout = (props: PropsWithChildren<Props>) => {
         <p>
           ©&nbsp;
           <FocusableLink href={`https://twitter.com/${config.twitter}`}>
-            @ephemeralMocha
+            {config.twitter}
           </FocusableLink>
         </p>
       </footer>
