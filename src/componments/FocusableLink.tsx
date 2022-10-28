@@ -14,7 +14,7 @@ export const FocusableLink = ({
   React.AnchorHTMLAttributes<HTMLAnchorElement> & Props
 >) => {
   if (external || href?.startsWith("http")) {
-    return <a tabIndex={tabIndex || 0} {...rest} />;
+    return <a tabIndex={tabIndex || 0} {...rest} href={href} />;
   } else {
     return <Link href={href || ""} tabIndex={tabIndex || 0} {...rest} />;
   }
