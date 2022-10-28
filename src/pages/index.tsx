@@ -7,6 +7,7 @@ import { Article } from "../componments/Article";
 import { Articles } from "../componments/Articles";
 import { FocusableLink } from "../componments/FocusableLink";
 import { ghostRepo } from "../lib/ghost";
+import { canonicalUrl } from "../lib/util";
 
 interface Props {
   posts: PostOrPage[];
@@ -15,9 +16,9 @@ interface Props {
 
 const Index = (props: Props) => {
   return (
-    <AppLayout>
+    <AppLayout canonicalUrl={canonicalUrl("")}>
       <Head>
-        <link rel="next" href="/blog/" />
+        <link rel="next" href="/blog" />
       </Head>
       <Article postOrPage={props.about} hideTitle hideDate />
       <section aria-labelledby="recent-entries">
@@ -25,7 +26,7 @@ const Index = (props: Props) => {
         <Articles posts={props.posts} />
       </section>
       <p>
-        <FocusableLink href="/blog/">全ての投稿</FocusableLink>
+        <FocusableLink href="/blog">全ての投稿</FocusableLink>
       </p>
     </AppLayout>
   );

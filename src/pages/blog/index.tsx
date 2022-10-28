@@ -4,6 +4,7 @@ import React from "react";
 import { AppLayout } from "../../componments/AppLayout";
 import { Articles } from "../../componments/Articles";
 import { ghostRepo } from "../../lib/ghost";
+import { canonicalUrl } from "../../lib/util";
 
 interface GroupedByYear {
   readonly [key: number]: PostOrPage[];
@@ -17,7 +18,7 @@ const Index = (props: Props) => {
     .map((string) => +string)
     .sort((a, b) => b - a);
   return (
-    <AppLayout title="全ての投稿">
+    <AppLayout title="全ての投稿" canonicalUrl={canonicalUrl("blog")}>
       <section aria-labelledby="all-articles">
         <h1 id="all-articles">全ての投稿</h1>
         {years.map((year) => {

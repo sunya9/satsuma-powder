@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { AppLayout } from "../componments/AppLayout";
 import { Article } from "../componments/Article";
 import { ghostRepo } from "../lib/ghost";
+import { canonicalUrl } from "../lib/util";
 
 interface Props {
   post: PostOrPage;
@@ -10,7 +11,10 @@ interface Props {
 
 const Post = ({ post }: Props) => {
   return (
-    <AppLayout title={post.title}>
+    <AppLayout
+      title={post.title}
+      canonicalUrl={canonicalUrl(`blog/${post.slug}`)}
+    >
       <Article postOrPage={post} hideDate />
     </AppLayout>
   );

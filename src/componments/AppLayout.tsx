@@ -7,6 +7,7 @@ import { FocusableLink } from "./FocusableLink";
 interface Props {
   title?: string;
   description?: string;
+  canonicalUrl?: string | null;
 }
 
 export const AppLayout = (props: PropsWithChildren<Props>) => {
@@ -20,6 +21,9 @@ export const AppLayout = (props: PropsWithChildren<Props>) => {
           name="description"
           content={props.description || config.description}
         />
+        {props.canonicalUrl && (
+          <link rel="canonical" href={props.canonicalUrl} />
+        )}
       </Head>
 
       <header key="appHeader">
