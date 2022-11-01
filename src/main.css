@@ -1,16 +1,132 @@
 :root {
-  --degree: 236;
-  --saturation: 50%;
-  --lightness: 49%;
-  --background-body: #f9f9f9;
-  --code: var(--text-main);
-  --links: hsl(var(--degree), var(--saturation), var(--lightness));
+  --degree: 26;
+  --saturation: 54%;
+  --lightness: 19%;
+  --text-color: #2f2725;
+  --strong-text-color: #27120a;
+  --secondary-text-color: #4e4449;
+  --background-body: #fffffc;
+  --secondary-background: #f8f5e3;
+  --border-color: #fbfaf3;
+  --base-font-size: 16px;
+  --accent: hsl(var(--degree), var(--saturation), var(--lightness));
+  --links: var(--accent);
+  --hover: hsla(var(--degree), var(--saturation), var(--lightness), 0.6);
   --focus: hsla(var(--degree), var(--saturation), var(--lightness), 0.7);
-  --background: transparent;
-  --selection: hsla(var(--degree), var(--saturation), var(--lightness), 0.2);
+  --selection: hsla(var(--degree), var(--saturation), var(--lightness), 0.8);
+  --spacing-unit: 0.5rem;
+  --spacing-1: var(--spacing-unit);
+  --spacing-2: calc(var(--spacing-unit) * 2);
+  --spacing-3: calc(var(--spacing-unit) * 3);
+  --spacing-4: calc(var(--spacing-unit) * 5);
+  --spacing-5: calc(var(--spacing-unit) * 8);
+  --spacing-6: calc(var(--spacing-unit) * 13);
+  font-size: var(--base-font-size);
 }
 body {
   line-height: 1.75;
+  margin: 0;
+  padding: 0;
+  background: var(--background-body);
+  color: var(--text-color);
+  font-feature-settings: "palt" 1;
+  font-weight: 300;
+  text-rendering: geometricPrecision;
+}
+
+.container {
+  max-width: 80ch;
+  margin: 0 auto;
+  padding: 0 var(--spacing-2);
+}
+
+::selection {
+  background-color: var(--selection);
+  color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  color: var(--strong-text-color);
+}
+
+h1 {
+  font-size: calc(var(--base-font-size) * 8 / 3);
+}
+
+h2 {
+  font-size: calc(var(--base-font-size) * 8 / 4);
+}
+
+h3 {
+  font-size: calc(var(--base-font-size) * 8 / 5);
+}
+
+h4 {
+  font-size: calc(var(--base-font-size) * 8 / 6);
+}
+
+h5 {
+  font-size: calc(var(--base-font-size) * 8 / 7);
+}
+
+h6 {
+  font-size: calc(var(--base-font-size) * 8 / 8);
+}
+
+small {
+  font-size: 0.7em;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1em 0;
+}
+
+code,
+pre {
+  background: var(--secondary-background);
+}
+
+code {
+  padding: 2px 4px;
+}
+
+pre {
+  padding: 1em;
+}
+
+a {
+  color: var(--links);
+}
+
+a:hover {
+  color: var(--hover)
+}
+
+a:focus {
+  color: var(--focus)
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  margin: var(--spacing-2) 0;
+  border: none;
+  border-top: 1px solid var(--border-color);
+}
+
+.button {
+  border: 1px solid var(--accent);
+  padding: var(--spacing-1) var(--spacing-2);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 .kg-card {
@@ -20,8 +136,4 @@ body {
 
 .kg-bookmark-card {
   font-size: 0.6rem;
-}
-
-pre > code {
-  background: #efefef;
 }

@@ -15,7 +15,7 @@ const Post = ({ post }: Props) => {
       title={post.title}
       canonicalUrl={canonicalUrl(`blog/${post.slug}`)}
     >
-      <Article postOrPage={post} hideDate />
+      <Article postOrPage={post} />
     </AppLayout>
   );
 };

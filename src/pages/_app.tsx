@@ -1,5 +1,4 @@
 import type { AppProps } from "next/app";
-import "water.css/out/light.css";
 import "../cards.css";
 import "../main.css";
 import Script from "next/script";

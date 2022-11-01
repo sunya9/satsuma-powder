@@ -19,20 +19,17 @@ const Index = (props: Props) => {
     .sort((a, b) => b - a);
   return (
     <AppLayout title="全ての投稿" canonicalUrl={canonicalUrl("blog")}>
-      <section aria-labelledby="all-articles">
-        <h1 id="all-articles">全ての投稿</h1>
-        {years.map((year) => {
-          const yearId = `year-${year}`;
-          return (
-            <section key={year} aria-labelledby={yearId}>
-              <h2 id={yearId}>
-                {year}年 <small>{props.postsPerYear[year].length}件</small>
-              </h2>
-              <Articles posts={props.postsPerYear[year]} withoutyear />
-            </section>
-          );
-        })}
-      </section>
+      {years.map((year) => {
+        const yearId = `year-${year}`;
+        return (
+          <section key={year} aria-labelledby={yearId}>
+            <h2 id={yearId}>
+              {year}年 <small>{props.postsPerYear[year].length}件</small>
+            </h2>
+            <Articles posts={props.postsPerYear[year]} withoutyear />
+          </section>
+        );
+      })}
     </AppLayout>
   );
 };

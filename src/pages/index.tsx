@@ -6,6 +6,7 @@ import { AppLayout } from "../componments/AppLayout";
 import { Article } from "../componments/Article";
 import { Articles } from "../componments/Articles";
 import { FocusableLink } from "../componments/FocusableLink";
+import { config } from "../lib/config";
 import { ghostRepo } from "../lib/ghost";
 import { canonicalUrl } from "../lib/util";
 
@@ -16,25 +17,30 @@ interface Props {
 
 const Index = (props: Props) => {
   return (
-    <AppLayout canonicalUrl={canonicalUrl("")}>
+    <AppLayout canonicalUrl={canonicalUrl("")} coverImage={config.cover_image}>
       <Head>
         <link rel="next" href="/blog" />
       </Head>
-      <Article postOrPage={props.about} hideTitle hideDate />
+      <Article postOrPage={props.about} />
       <section aria-labelledby="recent-entries">
         <h2 id="recent-entries">最近の投稿</h2>
         <Articles posts={props.posts} />
       </section>
+      <hr className="invisible" />
       <p>
-        <FocusableLink href="/blog">全ての投稿</FocusableLink>
+        <FocusableLink className="button" href="/blog">
+          全ての投稿
+        </FocusableLink>
       </p>
     </AppLayout>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await ghostRepo.getPosts(10);
-  const about = await ghostRepo.getPage("about");
+  const [posts, about] = await Promise.all([
+    ghostRepo.getPosts(5),
+    ghostRepo.getPage("about"),
+  ]);
   return {
     props: {
       posts,

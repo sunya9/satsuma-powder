@@ -7,10 +7,8 @@ import { useRef } from "react";
 
 interface Props {
   postOrPage: PostOrPage;
-  hideDate?: boolean;
   olderPost?: PostOrPage;
   newerPost?: PostOrPage;
-  hideTitle?: boolean;
 }
 
 const DangerouslyHtml = ({ html }: { html: string }) => {
@@ -50,64 +48,72 @@ const DangerouslyHtml = ({ html }: { html: string }) => {
   );
 };
 
-export const Article = ({
-  postOrPage,
-  hideDate,
-  olderPost,
-  newerPost,
-  hideTitle,
-}: Props) => {
+export const Article = ({ postOrPage, olderPost, newerPost }: Props) => {
   const html = postOrPage.html || "";
   const hasRelatedPosts = newerPost || olderPost;
   return (
     <article aria-label={postOrPage.title}>
-      <header>
-        {!hideTitle && <h1>{postOrPage.title}</h1>}
-        {!hideDate && postOrPage.published_at && (
-          <time dateTime={postOrPage.published_at}>
-            {formatDate(postOrPage.published_at)}
-          </time>
-        )}
-      </header>
       <Head>
         {newerPost && <link rel="prev" href={`/blog/${newerPost.slug}`} />}
         {olderPost && <link rel="next" href={`/blog/${olderPost.slug}`} />}
       </Head>
       <DangerouslyHtml html={html} />
       {hasRelatedPosts && (
-        <nav aria-label="前後の記事">
-          <ul>
-            {newerPost && (
-              <li>
-                次の投稿（
+        <nav aria-label="前後の記事" className="related-posts">
+          {newerPost && (
+            <FocusableLink href={`/blog/${newerPost.slug}`} className="next">
+              <span className="label">
                 {newerPost.published_at && (
                   <time dateTime={newerPost.published_at}>
                     {formatDate(newerPost.published_at)}
                   </time>
                 )}
-                ）
-                <FocusableLink href={`/blog/${newerPost.slug}`}>
-                  {newerPost.title}
-                </FocusableLink>
-              </li>
-            )}
-            {olderPost && (
-              <li>
-                前の投稿（
+              </span>
+              {newerPost.title}
+            </FocusableLink>
+          )}
+          {olderPost && (
+            <FocusableLink href={`/blog/${olderPost.slug}`} className="prev">
+              <span className="label">
                 {olderPost.published_at && (
                   <time dateTime={olderPost.published_at}>
                     {formatDate(olderPost.published_at)}
                   </time>
                 )}
-                ）
-                <FocusableLink href={`/blog/${olderPost.slug}`}>
-                  {olderPost.title}
-                </FocusableLink>
-              </li>
-            )}
-          </ul>
+              </span>
+              {olderPost.title}
+            </FocusableLink>
+          )}
         </nav>
       )}
+      <style jsx>
+        {`
+          .related-posts {
+            display: grid;
+            grid-template: "next prev" 1fr / 1fr 1fr;
+            gap: var(--spacing-2);
+            margin: 2rem 0;
+          }
+          .related-posts :global(.next),
+          .related-posts :global(.prev) {
+            border: 1px solid var(--border-color);
+            padding: var(--spacing-2);
+            display: block;
+            text-decoration: none;
+          }
+          .label {
+            display: block;
+            color: var(--secondary-text-color);
+          }
+          .related-posts :global(.next) {
+            grid-area: next;
+          }
+          .related-posts :global(.prev) {
+            grid-area: prev;
+            text-align: right;
+          }
+        `}
+      </style>
     </article>
   );
 };

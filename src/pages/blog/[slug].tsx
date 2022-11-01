@@ -16,6 +16,9 @@ const Post = ({ post, olderPost, newerPost }: Props) => {
     <AppLayout
       title={post.title}
       canonicalUrl={canonicalUrl(`blog/${post.slug}`)}
+      coverImage={post.feature_image}
+      date={post.published_at}
+      description={post.custom_excerpt}
     >
       <Article postOrPage={post} olderPost={olderPost} newerPost={newerPost} />
     </AppLayout>
@@ -45,8 +48,10 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   if (typeof slug !== "string") return { notFound: true };
   const post = await ghostRepo.getPost(slug);
   if (!post) return { notFound: true };
-  const olderPost = await ghostRepo.getOlderPost(post.published_at);
-  const newerPost = await ghostRepo.getNewerPost(post.published_at);
+  const [olderPost, newerPost] = await Promise.all([
+    ghostRepo.getOlderPost(post.published_at),
+    ghostRepo.getNewerPost(post.published_at),
+  ]);
   return {
     props: {
       post,
