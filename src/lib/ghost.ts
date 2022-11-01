@@ -18,12 +18,12 @@ class GhostRepository {
     this.contentApi = new GhostContentAPI({
       url: this.url,
       key: env.key,
-      version: "v3",
+      version: "v5.0",
     });
     this.adminApi = new GhostAdminAPI({
       url: this.url,
       key: env.adminKey,
-      version: "v3",
+      version: "v5.0",
     });
     this.getSettings();
   }
