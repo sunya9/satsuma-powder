@@ -15,7 +15,7 @@
     "@tryghost/admin-api": "1.13.1",
     "@tryghost/content-api": "1.11.4",
     "next": "13.0.3",
-    "next-sitemap": "3.1.30",
+    "next-sitemap": "3.1.31",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
