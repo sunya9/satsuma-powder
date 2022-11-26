@@ -1,0 +1,17 @@
+.time {
+  display: block;
+  color: var(--secondary-text-color);
+}
+.articles {
+  list-style: none;
+  padding-left: 0;
+}
+.article :global(.link) {
+  text-decoration: none;
+  display: block;
+  padding: var(--spacing-2) 0;
+}
+
+.article + .article {
+  border-top: 1px solid var(--border-color);
+}

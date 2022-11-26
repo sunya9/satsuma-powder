@@ -1,7 +1,7 @@
 import type { PostOrPage } from "@tryghost/content-api";
 import { formatDate } from "../lib/date";
 import { FocusableLink } from "./FocusableLink";
-
+import styles from "./articles.module.css";
 interface Props {
   posts: PostOrPage[];
   withoutyear?: true;
@@ -9,7 +9,7 @@ interface Props {
 
 export const Articles = (props: Props) => {
   return (
-    <ul role="feed" aria-busy="false" className="articles">
+    <ul role="feed" aria-busy="false" className={styles.articles}>
       {props.posts.map((post, index, ary) => {
         return (
           <li
@@ -18,14 +18,15 @@ export const Articles = (props: Props) => {
             aria-posinset={index + 1}
             aria-setsize={ary.length}
             aria-labelledby={post.id}
+            className={styles.article}
           >
             <FocusableLink
               href={`/blog/${post.slug}`}
               id={post.id}
-              className="item"
+              className="link"
             >
               {post.published_at && (
-                <time dateTime={post.published_at}>
+                <time dateTime={post.published_at} className={styles.time}>
                   {formatDate(post.published_at)}
                 </time>
               )}
@@ -34,25 +35,6 @@ export const Articles = (props: Props) => {
           </li>
         );
       })}
-      <style jsx>{`
-        time {
-          display: block;
-          color: var(--secondary-text-color);
-        }
-        .articles {
-          list-style: none;
-          padding-left: 0;
-        }
-        li :global(.item) {
-          text-decoration: none;
-          display: block;
-          padding: var(--spacing-2) 0;
-        }
-
-        .articles > li + li {
-          border-top: 1px solid var(--border-color);
-        }
-      `}</style>
     </ul>
   );
 };

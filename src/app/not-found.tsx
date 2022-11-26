@@ -2,7 +2,11 @@ import { AppLayout } from "../componments/AppLayout";
 
 const NotFound = () => {
   return (
-    <AppLayout title="🫥Not found🫥">
+    <AppLayout
+      header={{
+        title: "🫥Not found🫥",
+      }}
+    >
       <p>
         お探しのページは見つかりませんでした。ごめんなさい。ページが完全になくなることはあまりないので良かったら探してみてください。
       </p>

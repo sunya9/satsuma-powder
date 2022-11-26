@@ -9,6 +9,13 @@ const config = {
   rewrites() {
     return [{ source: "/p/:uuid", destination: "/api/preview/:uuid" }];
   },
+  experimental: {
+    appDir: true,
+    serverComponentsExternalPackages: [
+      "@tryghost/content-api",
+      "@tryghost/admin-api",
+    ],
+  },
 };
 
 export default config;
