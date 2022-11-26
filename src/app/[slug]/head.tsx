@@ -1,13 +1,8 @@
 import { ghostRepo } from "../../lib/ghost";
 import { Canonical, Description } from "../../lib/head";
 
-async function getPost(slug: string) {
-  const post = await ghostRepo.getPage(slug);
-  return post;
-}
-
 export default async function Head({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+  const post = await ghostRepo.getPage(params.slug);
 
   return (
     <>

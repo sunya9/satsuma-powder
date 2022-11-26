@@ -1,13 +1,8 @@
 import { ghostRepo } from "../../../lib/ghost";
 import { Canonical, Description } from "../../../lib/head";
 
-async function getPost(slug: string) {
-  const post = await ghostRepo.getPost(slug);
-  return post;
-}
-
 export default async function Head({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+  const post = await ghostRepo.getPost(params.slug);
   const [olderPost, newerPost] = await Promise.all([
     ghostRepo.getOlderPost(post.published_at).catch(() => void 0),
     ghostRepo.getNewerPost(post.published_at).catch(() => void 0),
