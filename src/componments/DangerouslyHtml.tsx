@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 
 export const DangerouslyHtml = ({ html }: { html: string }) => {
+  const prefix = useId();
   useEffect(() => {
     const div = document.createElement("div");
     div.innerHTML = html;
     const scripts = div.querySelectorAll("script");
     const externalScriptElementsWithId = Array.from(scripts)
       .filter((script) => script.src)
-      .map((script) => {
-        const id = `script-${Date.now()}`;
+      .map((script, i) => {
+        const id = `script-${prefix}-${i}`;
         script.id = id;
         const range = document.createRange();
         const fragment = range.createContextualFragment(script.outerHTML);
@@ -24,7 +25,7 @@ export const DangerouslyHtml = ({ html }: { html: string }) => {
         document.getElementById(id)?.remove()
       );
     };
-  }, [html]);
+  }, [html, prefix]);
   const div = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
