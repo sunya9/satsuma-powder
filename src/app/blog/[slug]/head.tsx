@@ -1,5 +1,5 @@
 import { ghostRepo } from "../../../lib/ghost";
-import { Canonical } from "../../../lib/head";
+import { Canonical, Description } from "../../../lib/head";
 
 async function getPost(slug: string) {
   const post = await ghostRepo.getPost(slug);
@@ -17,6 +17,7 @@ export default async function Head({ params }: { params: { slug: string } }) {
       <title>{post.title}</title>
       {newerPost && <link rel="prev" href={`/blog/${newerPost.slug}`} />}
       {olderPost && <link rel="next" href={`/blog/${olderPost.slug}`} />}
+      <Description description={post.custom_excerpt} />
       <Canonical relativePath={`blog/${post.slug}`} />
     </>
   );
