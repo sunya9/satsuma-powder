@@ -1,0 +1,30 @@
+.header {
+  padding: 1vw 0;
+}
+.hasCover {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  padding: 10vw 0;
+}
+.time {
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  padding: 0.5em 0;
+  border: 1px solid transparent;
+}
+.hasCover .time {
+  border-color: rgba(255, 255, 255, 0.5);
+  padding: 0.5em 1em;
+}
+.hasCover .h1 {
+  color: #fff;
+  margin: 0 0 1rem;
+}
+.hasCover + .main {
+  margin: 3rem 0;
+}
+.footer {
+  margin: 5rem 0;
+}

@@ -1,0 +1,24 @@
+.relatedPosts {
+  display: grid;
+  grid-template: "next prev" 1fr / 1fr 1fr;
+  gap: var(--spacing-2);
+  margin: 2rem 0;
+}
+.relatedPosts :global(.next),
+.relatedPosts :global(.prev) {
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-2);
+  display: block;
+  text-decoration: none;
+}
+.label {
+  display: block;
+  color: var(--secondary-text-color);
+}
+.relatedPosts :global(.next) {
+  grid-area: next;
+}
+.relatedPosts :global(.prev) {
+  grid-area: prev;
+  text-align: right;
+}
