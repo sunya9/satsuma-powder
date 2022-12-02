@@ -15,7 +15,7 @@
     "@tryghost/admin-api": "1.13.2",
     "@tryghost/content-api": "1.11.5",
     "classnames": "^2.3.2",
-    "next": "13.0.5",
+    "next": "13.0.6",
     "next-sitemap": "3.1.32",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -28,7 +28,7 @@
     "@typescript-eslint/eslint-plugin": "5.45.0",
     "@typescript-eslint/parser": "5.45.0",
     "eslint": "8.28.0",
-    "eslint-config-next": "13.0.5",
+    "eslint-config-next": "13.0.6",
     "npm-run-all": "4.1.5",
     "prettier": "2.8.0",
     "typescript": "4.9.3",
