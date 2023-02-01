@@ -16,7 +16,7 @@
     "@tryghost/content-api": "1.11.5",
     "classnames": "^2.3.2",
     "next": "13.1.1",
-    "next-sitemap": "3.1.48",
+    "next-sitemap": "3.1.49",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
