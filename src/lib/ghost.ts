@@ -1,98 +1,190 @@
-import GhostContentAPI, {
-  GhostAPI,
-  Nullable,
-  Settings,
-} from "@tryghost/content-api";
+import { Nullable, Settings, Params, PostOrPage } from "@tryghost/content-api";
 import { env } from "./env";
+import * as jwt from "jsonwebtoken";
 
-import GhostAdminAPI from "@tryghost/admin-api";
-
-class GhostRepository {
-  private contentApi: GhostAPI;
-  private adminApi: GhostAdminAPI;
-  private settings!: Settings;
+export interface GhostClientOptions {
   url: string;
+  key: string;
+  adminKey: string;
+}
 
-  constructor() {
-    this.url = env.url;
-    this.contentApi = new GhostContentAPI({
-      url: this.url,
-      key: env.key,
-      version: "v5.0",
-    });
-    this.adminApi = new GhostAdminAPI({
-      url: this.url,
-      key: env.adminKey,
-      version: "v5.0",
-    });
-    this.getSettings();
+type PostOrPageResponse = {
+  meta: {
+    pagination: {
+      page: number;
+      limit: number;
+      pages: number;
+      total: number;
+      next: number | null;
+      prev: number | null;
+    };
+  };
+};
+
+type PagesRespnose = {
+  pages: PostOrPage[];
+} & PostOrPageResponse;
+
+type PostsRespnose = {
+  posts: PostOrPage[];
+} & PostOrPageResponse;
+
+interface GhostClient {
+  getPosts(limit: number | "all"): Promise<PostOrPage[]>;
+  getPages(limit: number | "all"): Promise<PostOrPage[]>;
+  getPost(slug: string): Promise<PostOrPage | undefined>;
+  getPage(slug: string): Promise<PostOrPage | undefined>;
+  getNewerPost(publishedAt?: Nullable<string>): Promise<PostOrPage | undefined>;
+  getOlderPost(publishedAt?: Nullable<string>): Promise<PostOrPage | undefined>;
+  getSettings(): Promise<Settings>;
+  getDraft(uuid: string): Promise<PostOrPage | undefined>;
+}
+
+export class GhostClientImpl implements GhostClient {
+  private readonly version = "v5.0";
+  private settings!: Settings;
+
+  constructor(
+    private readonly fetch: typeof global.fetch,
+    private readonly options: GhostClientOptions
+  ) {}
+
+  async getPosts(limit: number | "all" = "all"): Promise<PostOrPage[]> {
+    return this.contentRequest<PostsRespnose>({
+      path: "/posts/",
+      params: {
+        limit,
+        fields: ["title", "slug", "published_at", "id"],
+      },
+    }).then((res) => res.posts);
   }
-
-  getPosts(limit: number | "all" = "all") {
-    return this.contentApi.posts.browse({
-      limit,
-      fields: ["title", "slug", "published_at", "id"],
-    });
+  async getPages(limit: number | "all" = "all"): Promise<PostOrPage[]> {
+    return this.contentRequest<PagesRespnose>({
+      path: "/pages/",
+      params: {
+        limit,
+        fields: ["title", "slug", "id"],
+      },
+    }).then((res) => res.pages);
   }
-
-  getPages(limit: number | "all" = "all") {
-    return this.contentApi.pages.browse({
-      limit,
-      fields: ["title", "slug", "id"],
-    });
+  getPost(slug: string): Promise<PostOrPage | undefined> {
+    return this.contentRequest<PostsRespnose>({
+      path: `/posts/slug/${slug}/`,
+    }).then((res) => res.posts[0]);
   }
-
-  getPost(slug: string) {
-    return this.contentApi.posts.read({ slug });
+  getPage(slug: string): Promise<PostOrPage | undefined> {
+    return this.contentRequest<PagesRespnose>({
+      path: `/pages/slug/${slug}/`,
+    }).then((res) => res.pages[0]);
   }
-
-  getPage(slug: string) {
-    return this.contentApi.pages.read({ slug });
-  }
-
-  async getNewerPost(publishedAt?: Nullable<string>) {
+  async getNewerPost(
+    publishedAt?: Nullable<string>
+  ): Promise<PostOrPage | undefined> {
     const filter = `published_at:>${encodeURIComponent(publishedAt || "")}`;
-    const res = await this.contentApi.posts.browse({
-      fields: ["title", "slug", "id", "published_at"],
-      filter,
-      limit: 1,
-      page: 1,
-      order: "published_at asc",
-    });
-    return res[0];
+    return this.contentRequest<PostsRespnose>({
+      path: `/posts/`,
+      params: {
+        fields: ["title", "slug", "id", "published_at"],
+        filter,
+        limit: 1,
+        page: 1,
+        order: "published_at asc",
+      },
+    }).then((res) => res.posts[0]);
   }
 
-  async getOlderPost(publishedAt?: Nullable<string>) {
+  async getOlderPost(
+    publishedAt?: Nullable<string>
+  ): Promise<PostOrPage | undefined> {
     const filter = `published_at:<${encodeURIComponent(publishedAt || "")}`;
-    const res = await this.contentApi.posts.browse({
-      fields: ["title", "slug", "id", "published_at"],
-      filter,
-      limit: 1,
-      page: 2,
-      order: "published_at desc",
-    });
-    return res[0];
+    return this.contentRequest<PostsRespnose>({
+      path: "/posts/",
+      params: {
+        fields: ["title", "slug", "id", "published_at"],
+        filter,
+        limit: 1,
+        page: 2,
+        order: "published_at desc",
+      },
+    }).then((res) => res.posts[0]);
   }
-
-  async getSettings() {
-    if (!this.settings) this.settings = await this.contentApi.settings.browse();
+  async getSettings(): Promise<Settings> {
+    if (!this.settings)
+      this.settings = await this.contentRequest<Settings>({
+        path: "/settings/",
+      });
     return this.settings;
   }
 
-  async getDraft(uuid: string) {
-    const postsPromise = this.adminApi.posts.browse({
-      limit: "all",
-      filter: ["status:draft"],
-      formats: ["html"],
-    });
-    const pagesPromise = this.adminApi.pages.browse({
-      limit: "all",
-      filter: ["status:draft"],
-      formats: ["html"],
-    });
+  async getDraft(uuid: string): Promise<PostOrPage | undefined> {
+    const postsPromise = this.adminRequest<PostsRespnose>({
+      path: "/posts/",
+      params: {
+        limit: "all",
+        filter: ["status:draft"],
+        formats: ["html"],
+      },
+    }).then((res) => res.posts);
+    const pagesPromise = this.adminRequest<PagesRespnose>({
+      path: "/pages/",
+      params: {
+        limit: "all",
+        filter: ["status:draft"],
+        formats: ["html"],
+      },
+    }).then((res) => res.pages);
     const [posts, pages] = await Promise.all([postsPromise, pagesPromise]);
     return [...posts, ...pages].find((postOrPage) => postOrPage.uuid === uuid);
   }
+
+  private async adminRequest<T>(options: { path: string; params?: Params }) {
+    const url = new URL(this.options.url);
+    url.pathname = `/ghost/api/admin${options.path}`;
+    Object.entries(options.params || {}).forEach(([key, value]) =>
+      url.searchParams.append(key, `${value}`)
+    );
+    // from https://ghost.org/docs/admin-api/#token-generation-examples
+    const [id, secret] = this.options.adminKey.split(":");
+    const token = jwt.sign({}, Buffer.from(secret, "hex"), {
+      keyid: id,
+      algorithm: "HS256",
+      expiresIn: "5m",
+      audience: `/admin/`,
+    });
+    const headers = new Headers({
+      "Accept-Version": this.version,
+      Authorization: `Ghost ${token}`,
+    });
+    return this.fetch(url, {
+      headers,
+      method: "GET",
+    }).then((res) => res.json() as T);
+  }
+
+  private async contentRequest<T>(options: { path: string; params?: Params }) {
+    const url = new URL(this.options.url);
+    url.pathname = `/ghost/api/content${options.path}`;
+    url.searchParams.append("key", this.options.key);
+    Object.entries(options.params || {}).forEach(([key, value]) =>
+      url.searchParams.append(key, `${value}`)
+    );
+    const headers = new Headers({
+      "Accept-Version": this.version,
+    });
+    return this.fetch(url.toString(), {
+      headers,
+      method: "GET",
+    })
+      .then((res) => res.json() as T)
+      .catch((error) => {
+        console.error(error);
+        return Promise.reject(error);
+      });
+  }
 }
 
-export const ghostRepo = new GhostRepository();
+export const ghostRepo = new GhostClientImpl(fetch, {
+  adminKey: env.adminKey,
+  key: env.key,
+  url: env.url,
+});

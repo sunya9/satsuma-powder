@@ -1,23 +1,25 @@
+import { notFound } from "next/navigation";
 import { AppLayout } from "../../componments/AppLayout";
 import { Article } from "../../componments/Article";
+import { exclusionPageSlugs } from "../../lib/excludedPages";
 import { ghostRepo } from "../../lib/ghost";
 
 const Post = async ({ params }: { params: { slug: string } }) => {
-  const post = await ghostRepo.getPage(params.slug);
+  if (exclusionPageSlugs.includes(params.slug)) notFound();
+  const page = await ghostRepo.getPage(params.slug);
+  if (!page) notFound();
   return (
     <AppLayout
       header={{
-        title: post.title,
+        title: page.title,
       }}
     >
-      <Article postOrPage={post} />
+      <Article postOrPage={page} />
     </AppLayout>
   );
 };
 
 export default Post;
-
-const exclusionPageSlugs = ["about"];
 
 export async function generateStaticParams() {
   const slugs = await ghostRepo

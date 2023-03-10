@@ -1,8 +1,8 @@
 import { NextApiHandler } from "next";
 
-const handler: NextApiHandler = async (req, res) => {
+const handler: NextApiHandler<void> = (req, res) => {
   const uuid = req.query.uuid;
-  if (typeof uuid !== "string") return void res.status(400).end();
+  if (typeof uuid !== "string") return res.status(400).end();
   res.setPreviewData({ uuid }).redirect(`/preview`).end();
 };
 

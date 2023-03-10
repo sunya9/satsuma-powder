@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { AppLayout } from "../componments/AppLayout";
 import { Article } from "../componments/Article";
@@ -11,6 +12,7 @@ const Index = async () => {
     ghostRepo.getPosts(5),
     ghostRepo.getPage("about"),
   ]);
+  if (!about) throw new Error("Cannot fetch about page");
   return (
     <AppLayout coverImage={config.cover_image}>
       <Article postOrPage={about} />
@@ -20,9 +22,9 @@ const Index = async () => {
       </section>
       <hr className="invisible" />
       <p>
-        <FocusableLink className="button" href="/blog">
+        <Link className="button" href="/blog" scroll>
           全ての投稿
-        </FocusableLink>
+        </Link>
       </p>
     </AppLayout>
   );
