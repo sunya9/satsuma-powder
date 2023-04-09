@@ -1,7 +1,7 @@
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import React, { PropsWithChildren } from "react";
 
-interface Props {
+interface Props extends LinkProps {
   external?: boolean;
 }
 

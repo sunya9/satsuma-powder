@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import { AppLayout } from "../componments/AppLayout";
 import { Article } from "../componments/Article";
@@ -22,9 +21,9 @@ const Index = async () => {
       </section>
       <hr className="invisible" />
       <p>
-        <Link className="button" href="/blog" scroll>
+        <FocusableLink className="button" href="/blog">
           全ての投稿
-        </Link>
+        </FocusableLink>
       </p>
     </AppLayout>
   );
