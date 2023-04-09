@@ -1,9 +1,14 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AppLayout } from "../../../componments/AppLayout";
 import { Article } from "../../../componments/Article";
 import { ghostRepo } from "../../../lib/ghost";
 
-const Post = async ({ params }: { params: { slug: string } }) => {
+type Props = {
+  params: { slug: string };
+};
+
+const Post = async ({ params }: Props) => {
   const slug = params.slug;
 
   const post = await ghostRepo.getPost(slug);
@@ -35,4 +40,25 @@ export const generateStaticParams = async () => {
   return slugs.map((slug) => ({
     slug,
   }));
+};
+
+export const generateMetadata: (props: Props) => Promise<Metadata> = async ({
+  params,
+}) => {
+  const slug = params.slug;
+  const post = await ghostRepo.getPost(slug);
+  if (!post) notFound();
+  const [olderPost, newerPost] = await Promise.all([
+    ghostRepo.getOlderPost(post.published_at).catch(() => void 0),
+    ghostRepo.getNewerPost(post.published_at).catch(() => void 0),
+  ]);
+  return {
+    title: post.title,
+    description: post.custom_excerpt,
+    prev: newerPost ? `/blog/${newerPost.slug}` : null,
+    next: olderPost ? `/blog/${olderPost.slug}` : null,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
+  };
 };

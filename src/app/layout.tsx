@@ -10,15 +10,29 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="ja">
       <head>
-        <link rel="icon" type="image/png" href={config.icon} />
         <link rel="dns-prefetch" href="//firebasestorage.googleapis.com" />
-        <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="format-detection" content="telephone=no" />
         {!isDev && <GoogleAnalytics />}
       </head>
       <body tabIndex={-1}>{children}</body>
     </html>
   );
 }
+
+export const metadata = {
+  title: {
+    default: config.title,
+    template: `%s | ${config.title}`,
+  },
+  metadataBase: new URL(config.url),
+  icons: config.icon,
+  archives: "/blog",
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": "/rss.xml",
+    },
+  },
+  formatDetection: {
+    telephone: false,
+  },
+};

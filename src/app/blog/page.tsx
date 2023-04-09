@@ -50,3 +50,11 @@ const Index = async () => {
 };
 
 export default Index;
+
+export const metadata = {
+  title: "全ての投稿",
+  description: "過去の投稿一覧です。",
+  alternates: {
+    canonical: "/blog",
+  },
+};
