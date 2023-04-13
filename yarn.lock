@@ -184,10 +184,10 @@
     form-data "^4.0.0"
     jsonwebtoken "^8.4.0"
 
-"@tryghost/content-api@1.11.7":
-  version "1.11.7"
-  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.11.7.tgz#5b779a319f4af16f9687c49459e475c9ca607b2f"
-  integrity sha512-G6Ovb0LSnlvx/nVzNDYd5kMyMmsTjwdiOANRbh/NPgaNUHS5RdUbbhPpYFvD1Cdi8xoliowCaGorv5wxI3Wb2Q==
+"@tryghost/content-api@1.11.8":
+  version "1.11.8"
+  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.11.8.tgz#27a27c05f9f04546a3a5f905863ff0c5211c1807"
+  integrity sha512-vL2S+NIfdnE0R0XFNBJAPNBeYs2lGbgvlc/BhdkctpHAvZ4sJWudDCjXBC8/tHP6X71oas5IVpJxUV2KbRiI7Q==
   dependencies:
     axios "^0.27.0"
 
