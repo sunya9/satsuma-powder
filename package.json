@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@tryghost/admin-api": "1.13.5",
-    "@tryghost/content-api": "1.11.7",
+    "@tryghost/content-api": "1.11.8",
     "classnames": "^2.3.2",
     "jsonwebtoken": "9.0.0",
     "next": "13.3.0",
