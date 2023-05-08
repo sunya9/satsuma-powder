@@ -13,7 +13,6 @@ const config = {
   },
   rewrites() {
     return [
-      { source: "/p/:uuid", destination: "/api/preview/:uuid" },
       { source: "/favicon.ico", destination: settings.settings.icon },
       { source: "/rss", destination: "/rss.xml" },
     ];
