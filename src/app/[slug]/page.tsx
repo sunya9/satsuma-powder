@@ -41,7 +41,7 @@ export async function generateStaticParams() {
   });
 }
 
-export const metadata: (props: Props) => Promise<Metadata> = async ({
+export const generateMetadata: (props: Props) => Promise<Metadata> = async ({
   params,
 }) => {
   if (exclusionPageSlugs.includes(params.slug)) notFound();
