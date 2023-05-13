@@ -18,7 +18,6 @@ const config = {
     ];
   },
   experimental: {
-    appDir: true,
     serverComponentsExternalPackages: [
       "@tryghost/content-api",
       "@tryghost/admin-api",
