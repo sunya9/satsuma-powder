@@ -184,12 +184,12 @@
     form-data "^4.0.0"
     jsonwebtoken "^9.0.0"
 
-"@tryghost/content-api@1.11.12":
-  version "1.11.12"
-  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.11.12.tgz#023ba0c74788c508b15ed56e1f7dc46c2fe57de4"
-  integrity sha512-q8l4Z5kvY5MzRkBfVZuIJRH5fXgV+RClcVqWBCCcEnlUC0vKVuoTFnwl7Xse6Girz31W6UoFYGSEKvFwvTIXrA==
+"@tryghost/content-api@1.11.13":
+  version "1.11.13"
+  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.11.13.tgz#5da4c8c4bd9ea122dbdc7a27163b25b927826e81"
+  integrity sha512-UVvxxi6jIlflff3gnRNQ8xBcy93lzF0diSThgxtAP19W8W6q/yEJFjW1EFZHkVfVGITmqKWxu8M6TLFetUJ1Fg==
   dependencies:
-    axios "^0.27.0"
+    axios "^1.0.0"
 
 "@types/fs-extra@^11.0.1":
   version "11.0.1"
@@ -527,14 +527,6 @@ axe-core@^4.3.5:
   version "4.3.5"
   resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.3.5.tgz"
   integrity sha512-WKTW1+xAzhMS5dJsxWkliixlO/PqC4VhmO9T4juNYcaTg9jzWiJsou6m5pxWYGfigWbwzJWeFY6z47a+4neRXA==
-
-axios@^0.27.0:
-  version "0.27.2"
-  resolved "https://registry.npmjs.org/axios/-/axios-0.27.2.tgz"
-  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
-  dependencies:
-    follow-redirects "^1.14.9"
-    form-data "^4.0.0"
 
 axios@^1.0.0:
   version "1.4.0"
@@ -1221,11 +1213,6 @@ flatted@^3.1.0:
   version "3.2.4"
   resolved "https://registry.npmjs.org/flatted/-/flatted-3.2.4.tgz"
   integrity sha512-8/sOawo8tJ4QOBX8YlQBMxL8+RLZfxMQOif9o0KUKTNTjMYElWPE0r/m5VNFxTRd0NSw8qSy8dajrwX4RYI1Hw==
-
-follow-redirects@^1.14.9:
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.0.tgz"
-  integrity sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==
 
 follow-redirects@^1.15.0:
   version "1.15.2"
