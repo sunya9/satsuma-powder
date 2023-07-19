@@ -206,10 +206,10 @@
     form-data "^4.0.0"
     jsonwebtoken "^9.0.0"
 
-"@tryghost/content-api@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.11.15.tgz#6a73ddddedd3af98f8ba2a4e9bb68811f04033a8"
-  integrity sha512-xqq8OLY7sBXhDUAT5caaHmQICRo0WRtFW8M7hvm8ZbVHc+639hkEmIBuINxW3Zy+QjcXkXANYCqqYdAlBZPM3Q==
+"@tryghost/content-api@1.11.16":
+  version "1.11.16"
+  resolved "https://registry.yarnpkg.com/@tryghost/content-api/-/content-api-1.11.16.tgz#2fc8b1d03ee15dd16970ae1e340992a11ecbf4f1"
+  integrity sha512-sssD96EQj4W8uSZqL9+TlWP/2YS7ysA9jFMLqfAiJXkcXP1+kCsFAWOkZ3DeS5QZ5PKQSti+L69yYGmkMVfzxA==
   dependencies:
     axios "^1.0.0"
 
