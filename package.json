@@ -22,7 +22,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@types/gtag.js": "0.0.13",
+    "@types/gtag.js": "0.0.14",
     "@types/jsonwebtoken": "9.0.3",
     "@types/node": "18.17.18",
     "@types/react": "18.2.22",
