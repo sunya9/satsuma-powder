@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "fetch:config": "./scripts/fetch-config.mjs",
-    "ci": "run-s fetch:config lint build",
     "fetch:default-style": "./scripts/fetch-default-style.mjs"
   },
   "dependencies": {
