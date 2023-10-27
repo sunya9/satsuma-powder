@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "yarn fetch:config && next build && next-sitemap",
+    "build": "yarn fetch:config && next build",
     "start": "next start",
     "lint": "next lint",
     "fetch:config": "./scripts/fetch-config.mjs",
@@ -16,7 +16,6 @@
     "classnames": "^2.3.2",
     "jsonwebtoken": "9.0.2",
     "next": "14.0.0",
-    "next-sitemap": "4.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
