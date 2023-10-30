@@ -11,7 +11,7 @@
     "fetch:default-style": "./scripts/fetch-default-style.mjs"
   },
   "dependencies": {
-    "@tryghost/admin-api": "1.13.9",
+    "@tryghost/admin-api": "1.13.10",
     "@tryghost/content-api": "1.11.18",
     "classnames": "^2.3.2",
     "jsonwebtoken": "9.0.2",
