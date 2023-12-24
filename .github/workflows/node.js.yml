@@ -9,10 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GHOST_URL: ${{ secrets.GHOST_URL }}
-      GHOST_KEY: ${{ secrets.GHOST_KEY }}
-      GHOST_ADMIN_KEY: ${{ secrets.GHOST_ADMIN_KEY }}
 
     strategy:
       matrix:
@@ -33,3 +29,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn
       - run: yarn run-s fetch:config lint build
+        env:
+          GHOST_URL: ${{ secrets.GHOST_URL }}
+          GHOST_KEY: ${{ secrets.GHOST_KEY }}
+          GHOST_ADMIN_KEY: ${{ secrets.GHOST_ADMIN_KEY }}
