@@ -23,7 +23,7 @@
     "@types/gtag.js": "0.0.17",
     "@types/jsonwebtoken": "9.0.4",
     "@types/node": "20.8.9",
-    "@types/react": "18.2.33",
+    "@types/react": "18.2.45",
     "@types/tryghost__content-api": "1.3.14",
     "@typescript-eslint/eslint-plugin": "6.15.0",
     "@typescript-eslint/parser": "6.15.0",
