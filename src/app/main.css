@@ -32,6 +32,7 @@ body {
   font-feature-settings: "palt" 1;
   font-weight: 300;
   text-rendering: geometricPrecision;
+  letter-spacing: 0.1px;
 }
 
 .container {
@@ -45,7 +46,13 @@ body {
   color: #fff;
 }
 
-h1, h2, h3, h4, h5, h6, strong {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
   color: var(--strong-text-color);
 }
 
@@ -78,7 +85,12 @@ small {
   font-weight: 400;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 1em 0;
 }
 
@@ -100,11 +112,11 @@ a {
 }
 
 a:hover {
-  color: var(--hover)
+  color: var(--hover);
 }
 
 a:focus {
-  color: var(--focus)
+  color: var(--focus);
 }
 
 img {
