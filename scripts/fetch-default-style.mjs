@@ -1,6 +1,6 @@
 #!/usr/bin/env zx
 
-import "zx/globals";
+import { $, cd, path } from "zx";
 
 cd(path.resolve(__dirname, ".."));
 
