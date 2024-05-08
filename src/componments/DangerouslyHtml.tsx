@@ -26,16 +26,11 @@ export const DangerouslyHtml = ({ html }: { html: string }) => {
       );
     };
   }, [html, prefix]);
-  const div = useRef<HTMLDivElement | null>(null);
+  const div = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     div.current?.querySelectorAll("a").forEach((a) => (a.tabIndex = 0));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [html]);
-  return (
-    <div
-      ref={(el) => (div.current = el)}
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
-  );
+  return <div ref={div} dangerouslySetInnerHTML={{ __html: html }} />;
 };
