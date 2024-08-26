@@ -268,10 +268,10 @@
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.5.0.tgz#591c1ce3a702c45ee15f47a42ade72c2fd78978a"
   integrity sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==
 
-"@types/tryghost__content-api@1.3.16":
-  version "1.3.16"
-  resolved "https://registry.yarnpkg.com/@types/tryghost__content-api/-/tryghost__content-api-1.3.16.tgz#57edbcfa570b29d322732f697e6c2fd3aeb2a762"
-  integrity sha512-i3TryXx8ZoW5LC9dMDWLkCg6vFMeCh4tAvr0ijAdlEzIhoSC8q5RPMANNmkiDxDcNMRCByVMoT4+RfB5qeURZQ==
+"@types/tryghost__content-api@1.3.17":
+  version "1.3.17"
+  resolved "https://registry.yarnpkg.com/@types/tryghost__content-api/-/tryghost__content-api-1.3.17.tgz#ebdd401791d581323b35d478c199349d3a7577cd"
+  integrity sha512-4DASYoK0hP1+XDyLS/8IZevalQRJuPmyPmfxdT1hnYRjxnJkgusATeDc/7QXA2izMZ/+cWkgdZDeTN2cBW+EoA==
 
 "@typescript-eslint/eslint-plugin@7.0.0":
   version "7.0.0"
