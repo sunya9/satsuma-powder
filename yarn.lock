@@ -3114,10 +3114,10 @@ yocto-queue@^0.1.0:
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zx@8.1.5:
-  version "8.1.5"
-  resolved "https://registry.yarnpkg.com/zx/-/zx-8.1.5.tgz#c51de2f9be06b85fe89dd688e6ba2664dd3e1204"
-  integrity sha512-gvmiYPvDDEz2Gcc37x7pJkipTKcFIE18q9QlSI1p5qoPDtoSn3jmGuWD0eEb7HuxEH5aDD7N/RVgH8BqSxbKzA==
+zx@8.1.6:
+  version "8.1.6"
+  resolved "https://registry.yarnpkg.com/zx/-/zx-8.1.6.tgz#e0f1c7a38a55729541c22fbab233d0cd60d3a3f4"
+  integrity sha512-SYAriWG+i2CFqMOJcF8QayI8wprlMYQsrmP6tFD7rSPnDLcImNSW7n/8crOYvNVrB2EFgz8LAQk23U1+Y7WrKA==
   optionalDependencies:
     "@types/fs-extra" ">=11"
     "@types/node" ">=20"
