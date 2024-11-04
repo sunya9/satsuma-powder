@@ -15,7 +15,7 @@
     "@tryghost/content-api": "1.11.21",
     "classnames": "^2.5.1",
     "jsonwebtoken": "9.0.2",
-    "next": "14.2.15",
+    "next": "15.0.2",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
