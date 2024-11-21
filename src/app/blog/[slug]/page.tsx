@@ -5,11 +5,11 @@ import { Article } from "../../../componments/Article";
 import { ghostRepo } from "../../../lib/ghost";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-const Post = async ({ params }: Props) => {
-  const slug = params.slug;
+const Post = async (props: Props) => {
+  const { slug } = await props.params;
 
   const post = await ghostRepo.getPost(slug);
   if (!post) notFound();
@@ -42,10 +42,10 @@ export const generateStaticParams = async () => {
   }));
 };
 
-export const generateMetadata: (props: Props) => Promise<Metadata> = async ({
-  params,
-}) => {
-  const slug = params.slug;
+export const generateMetadata: (props: Props) => Promise<Metadata> = async (
+  props
+) => {
+  const { slug } = await props.params;
   const post = await ghostRepo.getPost(slug);
   if (!post) notFound();
   const [olderPost, newerPost] = await Promise.all([

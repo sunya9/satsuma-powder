@@ -17,12 +17,7 @@ const config = {
       { source: "/rss", destination: "/rss.xml" },
     ];
   },
-  experimental: {
-    serverComponentsExternalPackages: [
-      "@tryghost/content-api",
-      "@tryghost/admin-api",
-    ],
-  },
+  serverExternalPackages: ["@tryghost/content-api", "@tryghost/admin-api"],
 };
 
 export default config;
