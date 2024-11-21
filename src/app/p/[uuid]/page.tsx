@@ -4,13 +4,13 @@ import { ghostRepo } from "../../../lib/ghost";
 import { notFound } from "next/navigation";
 
 type Props = {
-  params: {
+  params: Promise<{
     uuid: string;
-  };
+  }>;
 };
 
-const Preview = async ({ params }: Props) => {
-  const uuid = params.uuid;
+const Preview = async (props: Props) => {
+  const { uuid } = await props.params;
   const draft = await ghostRepo.getDraft(uuid).catch(console.error);
   if (!draft) return notFound();
   return (
