@@ -31,7 +31,6 @@ type PostsRespnose = {
 
 interface GhostClient {
   getPosts(limit: number | "all"): Promise<PostOrPage[]>;
-  getPages(limit: number | "all"): Promise<PostOrPage[]>;
   getPost(slug: string): Promise<PostOrPage | undefined>;
   getPage(slug: string): Promise<PostOrPage | undefined>;
   getNewerPost(publishedAt?: Nullable<string>): Promise<PostOrPage | undefined>;
@@ -58,21 +57,12 @@ export class GhostClientImpl implements GhostClient {
       },
     }).then((res) => res.posts);
   }
-  async getPages(limit: number | "all" = "all"): Promise<PostOrPage[]> {
-    return this.contentRequest<PagesRespnose>({
-      path: "/pages/",
-      params: {
-        limit,
-        fields: ["title", "slug", "id"],
-      },
-    }).then((res) => res.pages);
-  }
-  getPost(slug: string): Promise<PostOrPage | undefined> {
+  async getPost(slug: string): Promise<PostOrPage | undefined> {
     return this.contentRequest<PostsRespnose>({
       path: `/posts/slug/${slug}/`,
     }).then((res) => res.posts[0]);
   }
-  getPage(slug: string): Promise<PostOrPage | undefined> {
+  async getPage(slug: string): Promise<PostOrPage | undefined> {
     return this.contentRequest<PagesRespnose>({
       path: `/pages/slug/${slug}/`,
     }).then((res) => res.pages[0]);
