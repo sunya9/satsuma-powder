@@ -13,7 +13,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <link rel="dns-prefetch" href="//firebasestorage.googleapis.com" />
         {!isDev && <GoogleAnalytics />}
       </head>
-      <body tabIndex={-1}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

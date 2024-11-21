@@ -6,7 +6,6 @@ interface Props extends LinkProps {
 }
 
 export const FocusableLink = ({
-  tabIndex,
   href,
   external,
   ...rest
@@ -14,8 +13,8 @@ export const FocusableLink = ({
   React.AnchorHTMLAttributes<HTMLAnchorElement> & Props
 >) => {
   if (external || href?.startsWith("http")) {
-    return <a tabIndex={tabIndex || 0} {...rest} href={href} />;
+    return <a {...rest} href={href} />;
   } else {
-    return <Link href={href || ""} tabIndex={tabIndex || 0} {...rest} />;
+    return <Link href={href || ""} {...rest} />;
   }
 };
