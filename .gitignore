@@ -36,6 +36,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
+# yarn
+.yarn/install-state.gz
+
 site.json
 public/rss.xml
 
