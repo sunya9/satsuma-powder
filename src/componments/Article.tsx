@@ -1,8 +1,8 @@
 import { PostOrPage } from "@tryghost/content-api";
 import { formatDate } from "../lib/date";
-import { FocusableLink } from "./FocusableLink";
 import { DangerouslyHtml } from "./DangerouslyHtml";
 import styles from "./article.module.css";
+import Link from "next/link";
 
 interface Props {
   postOrPage: PostOrPage;
@@ -19,7 +19,7 @@ export const Article = ({ postOrPage, olderPost, newerPost }: Props) => {
       {hasRelatedPosts && (
         <nav aria-label="前後の記事" className={styles.relatedPosts}>
           {newerPost && (
-            <FocusableLink href={`/blog/${newerPost.slug}`} className="next">
+            <Link href={`/blog/${newerPost.slug}`} className="next">
               <span className={styles.label}>
                 {newerPost.published_at && (
                   <time dateTime={newerPost.published_at}>
@@ -28,10 +28,10 @@ export const Article = ({ postOrPage, olderPost, newerPost }: Props) => {
                 )}
               </span>
               {newerPost.title}
-            </FocusableLink>
+            </Link>
           )}
           {olderPost && (
-            <FocusableLink href={`/blog/${olderPost.slug}`} className="prev">
+            <Link href={`/blog/${olderPost.slug}`} className="prev">
               <span className={styles.label}>
                 {olderPost.published_at && (
                   <time dateTime={olderPost.published_at}>
@@ -40,7 +40,7 @@ export const Article = ({ postOrPage, olderPost, newerPost }: Props) => {
                 )}
               </span>
               {olderPost.title}
-            </FocusableLink>
+            </Link>
           )}
         </nav>
       )}

@@ -1,9 +1,9 @@
 import { config } from "../lib/config";
 import React, { PropsWithChildren } from "react";
-import { FocusableLink } from "./FocusableLink";
 import { formatDate } from "../lib/date";
 import styles from "./appLayout.module.css";
 import classNames from "classnames";
+import Link from "next/link";
 
 interface Props {
   coverImage?: string | null;
@@ -60,16 +60,16 @@ export const AppLayout = (props: PropsWithChildren<Props>) => {
         <div className="container">
           {props.header && (
             <p>
-              <FocusableLink className="button" href="/">
+              <Link className="button" href="/">
                 ホームに戻る
-              </FocusableLink>
+              </Link>
             </p>
           )}
           <p>
             ©&nbsp;
-            <FocusableLink href={`https://twitter.com/${config.twitter}`}>
+            <a href={`https://twitter.com/${config.twitter}`}>
               {config.twitter}
-            </FocusableLink>
+            </a>
           </p>
         </div>
       </footer>

@@ -2,9 +2,9 @@ import React from "react";
 import { AppLayout } from "../componments/AppLayout";
 import { Article } from "../componments/Article";
 import { Articles } from "../componments/Articles";
-import { FocusableLink } from "../componments/FocusableLink";
 import { config } from "../lib/config";
 import { ghostRepo } from "../lib/ghost";
+import Link from "next/link";
 
 const Index = async () => {
   const [posts, about] = await Promise.all([
@@ -21,9 +21,9 @@ const Index = async () => {
       </section>
       <hr className="invisible" />
       <p>
-        <FocusableLink className="button" href="/blog">
+        <Link className="button" href="/blog">
           全ての投稿
-        </FocusableLink>
+        </Link>
       </p>
     </AppLayout>
   );
