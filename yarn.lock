@@ -3980,7 +3980,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     typescript: "npm:5.7.2"
-    zx: "npm:8.2.4"
+    zx: "npm:8.3.0"
   languageName: unknown
   linkType: soft
 
@@ -4820,9 +4820,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zx@npm:8.2.4":
-  version: 8.2.4
-  resolution: "zx@npm:8.2.4"
+"zx@npm:8.3.0":
+  version: 8.3.0
+  resolution: "zx@npm:8.3.0"
   dependencies:
     "@types/fs-extra": "npm:>=11"
     "@types/node": "npm:>=20"
@@ -4833,6 +4833,6 @@ __metadata:
       optional: true
   bin:
     zx: build/cli.js
-  checksum: 10c0/ae60ceef4eaf62695de0a24edab302efc770da10f2f4e79b7b8d50c2e7bee8c4b100e8722c6963a6f4badafe3f00d8d0fd50080c90745bf7bca90203c4aee59b
+  checksum: 10c0/ee40ad833fb5fd58e578be3d4fc811c268a3ad3f4063902c46497d329bf9fc631b3545fb56e98416c9b4cae4e9a6e9a02a99425e43691f3b42ade9e4a8399646
   languageName: node
   linkType: hard
