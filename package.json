@@ -35,5 +35,5 @@
     "typescript": "5.7.3",
     "zx": "8.3.0"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "pnpm@10.1.0"
 }
