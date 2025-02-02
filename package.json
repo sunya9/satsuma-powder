@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "yarn fetch:config && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "fetch:config": "./scripts/fetch-config.mjs",
@@ -35,5 +35,5 @@
     "typescript": "5.7.3",
     "zx": "8.3.0"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "pnpm@10.1.0"
 }
