@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "run-s fetch:config && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "fetch:config": "./scripts/fetch-config.mjs",
