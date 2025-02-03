@@ -4,6 +4,7 @@ import "./cards.css";
 import { GoogleAnalytics } from "../componments/GoogleAnalytics";
 import { config } from "../lib/config";
 import { isDev } from "../lib/util";
+import { Metadata } from "next";
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props;
@@ -18,11 +19,12 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   );
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: config.title,
     template: `%s | ${config.title}`,
   },
+  description: config.description,
   metadataBase: new URL(config.url),
   icons: config.icon,
   archives: "/blog",
@@ -34,5 +36,10 @@ export const metadata = {
   },
   formatDetection: {
     telephone: false,
+  },
+  openGraph: {
+    siteName: config.title,
+    url: config.url,
+    type: "website",
   },
 };

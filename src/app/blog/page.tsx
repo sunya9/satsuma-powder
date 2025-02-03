@@ -2,6 +2,8 @@ import { PostOrPage } from "@tryghost/content-api";
 import { AppLayout } from "../../componments/AppLayout";
 import { Articles } from "../../componments/Articles";
 import { ghostRepo } from "../../lib/ghost";
+import { config } from "../../lib/config";
+import { Metadata } from "next";
 
 interface GroupedByYear {
   readonly [key: number]: PostOrPage[];
@@ -51,10 +53,15 @@ const Index = async () => {
 
 export default Index;
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "全ての投稿",
   description: "過去の投稿一覧です。",
   alternates: {
-    canonical: "/blog",
+    canonical: `${config.url}blog`,
+  },
+  openGraph: {
+    siteName: config.title,
+    url: `${config.url}blog`,
+    type: "website",
   },
 };
