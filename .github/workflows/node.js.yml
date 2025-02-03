@@ -41,7 +41,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-
       - run: pnpm install
-      - run: pnpm run-s lint fetch:config build
+      - run: pnpm run-s fetch:config lint build
         env:
           GHOST_URL: ${{ secrets.GHOST_URL }}
           GHOST_KEY: ${{ secrets.GHOST_KEY }}
