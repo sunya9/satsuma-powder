@@ -40,8 +40,8 @@ importers:
         specifier: 9.0.8
         version: 9.0.8
       '@types/node':
-        specifier: 22.10.10
-        version: 22.10.10
+        specifier: 22.13.0
+        version: 22.13.0
       '@types/react':
         specifier: 19.0.8
         version: 19.0.8
@@ -347,8 +347,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@22.10.10':
-    resolution: {integrity: sha512-X47y/mPNzxviAGY5TcYPtYL8JsY3kAq2n8fMmKoRCxq/c4v4pyGNCzM2R6+M5/umG4ZfHuT+sgqDYqWc9rJ6ww==}
+  '@types/node@22.13.0':
+    resolution: {integrity: sha512-ClIbNe36lawluuvq3+YYhnIN2CELi+6q8NpnM7PYp4hBn/TatfboPgVSm2rwKRfnV2M+Ty9GWDFI64KEe+kysA==}
 
   '@types/react@19.0.8':
     resolution: {integrity: sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw==}
@@ -1872,7 +1872,7 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.1
-      '@types/node': 22.10.10
+      '@types/node': 22.13.0
     optional: true
 
   '@types/gtag.js@0.0.20': {}
@@ -1883,17 +1883,17 @@ snapshots:
 
   '@types/jsonfile@6.1.1':
     dependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.13.0
     optional: true
 
   '@types/jsonwebtoken@9.0.8':
     dependencies:
       '@types/ms': 2.1.0
-      '@types/node': 22.10.10
+      '@types/node': 22.13.0
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@22.10.10':
+  '@types/node@22.13.0':
     dependencies:
       undici-types: 6.20.0
 
@@ -3481,4 +3481,4 @@ snapshots:
   zx@8.3.0:
     optionalDependencies:
       '@types/fs-extra': 11.0.4
-      '@types/node': 22.10.10
+      '@types/node': 22.13.0
