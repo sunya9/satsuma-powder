@@ -29,9 +29,14 @@ export const metadata: Metadata = {
   icons: config.icon,
   archives: "/blog",
   alternates: {
-    canonical: "/",
+    canonical: config.url,
     types: {
-      "application/rss+xml": "/rss.xml",
+      "application/rss+xml": [
+        {
+          title: `${config.title}のRSS`,
+          url: "/rss.xml",
+        },
+      ],
     },
   },
   formatDetection: {
