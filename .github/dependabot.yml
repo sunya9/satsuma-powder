@@ -9,7 +9,24 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
-
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-*"
+          - "@types/react*"
+          - "next"
+      ghost:
+        patterns:
+          - "@tryghost/content-api"
+          - "@tryghost/admin-api"
+          - "@types/tryghost__content-api"
+      eslint:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+      devDependencies:
+        dependency-type: "development"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
