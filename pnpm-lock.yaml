@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@tryghost/admin-api':
-        specifier: 1.13.13
-        version: 1.13.13
+        specifier: 1.13.15
+        version: 1.13.15
       '@tryghost/content-api':
-        specifier: 1.11.22
-        version: 1.11.22
+        specifier: 1.11.24
+        version: 1.11.24
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -335,11 +335,11 @@ packages:
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
 
-  '@tryghost/admin-api@1.13.13':
-    resolution: {integrity: sha512-RBcL9weuLWjBHrEWVvqp838D+jrLlguiAUcda90RgBCZ+CbQkSuslCuffy0yAoTUa2QGBNj+Nlzjx1J8Q25FIA==}
+  '@tryghost/admin-api@1.13.15':
+    resolution: {integrity: sha512-dk7YtvRiSOUUYTYUwNjFiZi0qYft3l6GR5Y5NMR8t7e94/WNm6HL6SLF7VuViXYmQaGPQjSdr1cB99u9bv4YlA==}
 
-  '@tryghost/content-api@1.11.22':
-    resolution: {integrity: sha512-sssy/4kV8P03GWhw63HTNTZao5OMamEjI3NjzGoCRK4B5U4V9yjF/WuMDSdhMWXLtx0rIcK5uFP8tgiArM86UA==}
+  '@tryghost/content-api@1.11.24':
+    resolution: {integrity: sha512-I+ABUW28qrojNInpp5IAS/iWaH+teI9Pmq65rOW1+uMmsCZNfVtc0vL+yOyxL8U6XeuhDNPhPBGfmJBEWGQUEQ==}
 
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
@@ -587,9 +587,6 @@ packages:
   axe-core@4.10.3:
     resolution: {integrity: sha512-Xm7bpRXnDSX2YE2YFfBk2FnF0ep6tmG7xPh8iHee8MIcrgq762Nkce856dYtJYLkuIoYZvGfTs/PbZhideTcEg==}
     engines: {node: '>=4'}
-
-  axios@1.8.4:
-    resolution: {integrity: sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==}
 
   axios@1.9.0:
     resolution: {integrity: sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==}
@@ -2406,15 +2403,15 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@tryghost/admin-api@1.13.13':
+  '@tryghost/admin-api@1.13.15':
     dependencies:
-      axios: 1.8.4
+      axios: 1.9.0
       form-data: 4.0.2
       jsonwebtoken: 9.0.2
     transitivePeerDependencies:
       - debug
 
-  '@tryghost/content-api@1.11.22':
+  '@tryghost/content-api@1.11.24':
     dependencies:
       axios: 1.9.0
     transitivePeerDependencies:
@@ -2699,14 +2696,6 @@ snapshots:
       possible-typed-array-names: 1.0.0
 
   axe-core@4.10.3: {}
-
-  axios@1.8.4:
-    dependencies:
-      follow-redirects: 1.15.9
-      form-data: 4.0.2
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
 
   axios@1.9.0:
     dependencies:
