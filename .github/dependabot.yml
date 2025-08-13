@@ -9,6 +9,8 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    assignees:
+      - "sunya9"
     groups:
       react:
         patterns:
@@ -31,3 +33,5 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    assignees:
+      - "sunya9"
