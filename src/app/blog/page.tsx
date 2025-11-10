@@ -9,6 +9,8 @@ interface GroupedByYear {
   readonly [key: number]: PostOrPage[];
 }
 
+export const dynamic = "force-static";
+
 const Index = async () => {
   const posts = await ghostRepo.getPosts();
   const postsPerYear: GroupedByYear = posts

@@ -49,6 +49,8 @@ export const generateStaticParams = async () => {
   }));
 };
 
+export const dynamic = "force-static";
+
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { slug } = await props.params;
   const post = await ghostRepo.getPost(slug);
