@@ -8,6 +8,7 @@ export const size = {
 };
 
 export const dynamic = "force-static";
+export const dynamicParams = false;
 
 export const contentType = "image/png";
 export default async function Image({

@@ -50,6 +50,7 @@ export const generateStaticParams = async () => {
 };
 
 export const dynamic = "force-static";
+export const dynamicParams = false;
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { slug } = await props.params;
