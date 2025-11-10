@@ -1,10 +1,10 @@
 import * as React from "react";
 import "./main.css";
 import "./cards.css";
-import { GoogleAnalytics } from "../componments/GoogleAnalytics";
 import { config } from "../lib/config";
 import { isDev } from "../lib/util";
 import { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props;
@@ -12,9 +12,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="ja">
       <head>
         <link rel="dns-prefetch" href="//firebasestorage.googleapis.com" />
-        {!isDev && <GoogleAnalytics />}
       </head>
       <body>{children}</body>
+      {!isDev && <GoogleAnalytics gaId="G-QTR9Z69TYK" />}
     </html>
   );
 }
