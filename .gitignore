@@ -44,3 +44,4 @@ public/rss.xml
 
 public/sitemap*.xml
 public/robots.txt
+next-env.d.ts
