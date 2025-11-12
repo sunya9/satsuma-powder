@@ -21,6 +21,7 @@ const Post = async (props: Props) => {
   return (
     <AppLayout
       coverImage={post.feature_image}
+      coverImageCaption={post.feature_image_caption}
       header={{
         title: post.title,
         date: post.published_at,

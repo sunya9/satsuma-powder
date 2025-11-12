@@ -1,3 +1,7 @@
+.article p {
+  text-autospace: normal;
+}
+
 .relatedPosts {
   display: grid;
   grid-template: "next prev" 1fr / 1fr 1fr;
