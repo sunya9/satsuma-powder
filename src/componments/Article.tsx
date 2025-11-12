@@ -14,7 +14,7 @@ export const Article = ({ postOrPage, olderPost, newerPost }: Props) => {
   const html = postOrPage.html || "";
   const hasRelatedPosts = newerPost || olderPost;
   return (
-    <article aria-label={postOrPage.title}>
+    <article aria-label={postOrPage.title} className={styles.article}>
       <DangerouslyHtml html={html} />
       {hasRelatedPosts && (
         <nav aria-label="前後の記事" className={styles.relatedPosts}>

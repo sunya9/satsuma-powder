@@ -7,6 +7,7 @@ import Link from "next/link";
 
 interface Props {
   coverImage?: string | null;
+  coverImageCaption?: string | null;
   header?: {
     title?: string;
     description?: string;
@@ -50,6 +51,12 @@ export const AppLayout = (props: PropsWithChildren<Props>) => {
                 </time>
               )}
             </>
+          )}
+          {props.coverImageCaption && (
+            <p
+              className={styles.coverImageCaption}
+              dangerouslySetInnerHTML={{ __html: props.coverImageCaption }}
+            />
           )}
         </div>
       </header>
