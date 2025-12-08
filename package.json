@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@next/third-parties": "^16.0.6",
+    "@next/third-parties": "^16.0.7",
     "@tryghost/admin-api": "1.14.2",
     "@tryghost/content-api": "1.12.2",
     "classnames": "^2.5.1",
