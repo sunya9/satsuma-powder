@@ -39,6 +39,7 @@
   "packageManager": "pnpm@10.1.0",
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@next/swc*",
       "unrs-resolver",
       "sharp"
     ],
