@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.0.10",
-    "@tryghost/admin-api": "1.14.3",
-    "@tryghost/content-api": "1.12.2",
+    "@tryghost/admin-api": "1.14.4",
+    "@tryghost/content-api": "1.12.3",
     "classnames": "^2.5.1",
     "date-fns-tz": "^3.2.0",
     "jsonwebtoken": "9.0.3",
