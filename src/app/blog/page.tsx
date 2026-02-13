@@ -1,4 +1,4 @@
-import { PostOrPage } from "@tryghost/content-api";
+import { type PostOrPage } from "@tryghost/content-api";
 import { AppLayout } from "../../componments/AppLayout";
 import { Articles } from "../../componments/Articles";
 import { ghostRepo } from "../../lib/ghost";

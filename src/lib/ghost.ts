@@ -1,4 +1,4 @@
-import { Nullable, Settings, Params, PostOrPage } from "@tryghost/content-api";
+import type { Nullable, Settings, Params, PostOrPage } from "@tryghost/content-api";
 import { env } from "./env";
 import * as jwt from "jsonwebtoken";
 
