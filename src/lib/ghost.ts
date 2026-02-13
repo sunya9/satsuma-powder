@@ -40,7 +40,7 @@ interface GhostClient {
 }
 
 export class GhostClientImpl implements GhostClient {
-  private readonly version = "v5.0";
+  private readonly version = "v6.0";
   private settings!: Settings;
 
   constructor(
@@ -107,24 +107,18 @@ export class GhostClientImpl implements GhostClient {
   }
 
   async getDraft(uuid: string): Promise<PostOrPage | undefined> {
-    const postsPromise = this.adminRequest<PostsRespnose>({
-      path: "/posts/",
-      params: {
-        limit: "all",
-        filter: ["status:draft"],
-        formats: ["html"],
-      },
-    }).then((res) => res.posts);
-    const pagesPromise = this.adminRequest<PagesRespnose>({
-      path: "/pages/",
-      params: {
-        limit: "all",
-        filter: ["status:draft"],
-        formats: ["html"],
-      },
-    }).then((res) => res.pages);
-    const [posts, pages] = await Promise.all([postsPromise, pagesPromise]);
-    return [...posts, ...pages].find((postOrPage) => postOrPage.uuid === uuid);
+    const filter = `uuid:${uuid}+status:draft`;
+    const [posts, pages] = await Promise.all([
+      this.adminRequest<PostsRespnose>({
+        path: "/posts/",
+        params: { limit: 1, filter, formats: ["html"] },
+      }).then((res) => res.posts),
+      this.adminRequest<PagesRespnose>({
+        path: "/pages/",
+        params: { limit: 1, filter, formats: ["html"] },
+      }).then((res) => res.pages),
+    ]);
+    return posts[0] ?? pages[0];
   }
 
   private async adminRequest<T>(options: { path: string; params?: Params }) {
