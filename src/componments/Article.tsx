@@ -1,4 +1,4 @@
-import { PostOrPage } from "@tryghost/content-api";
+import { type PostOrPage } from "@tryghost/content-api";
 import { formatDate } from "../lib/date";
 import { DangerouslyHtml } from "./DangerouslyHtml";
 import styles from "./article.module.css";

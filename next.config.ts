@@ -10,7 +10,6 @@ const config: NextConfig = {
       { source: "/rss", destination: "/rss.xml" },
     ];
   },
-  serverExternalPackages: ["@tryghost/content-api", "@tryghost/admin-api"],
 };
 
 export default config;

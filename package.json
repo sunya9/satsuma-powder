@@ -13,8 +13,6 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",
-    "@tryghost/admin-api": "1.14.4",
-    "@tryghost/content-api": "1.12.3",
     "classnames": "^2.5.1",
     "date-fns-tz": "^3.2.0",
     "jsonwebtoken": "9.0.3",
@@ -42,9 +40,6 @@
       "@next/swc*",
       "unrs-resolver",
       "sharp"
-    ],
-    "overrides": {
-      "axios@>=1.0.0 <1.12.0": ">=1.12.0"
-    }
+    ]
   }
 }

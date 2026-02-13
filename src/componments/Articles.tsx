@@ -1,4 +1,4 @@
-import type { PostOrPage } from "@tryghost/content-api";
+import { type PostOrPage } from "@tryghost/content-api";
 import { formatDate } from "../lib/date";
 import styles from "./articles.module.css";
 import Link from "next/link";
