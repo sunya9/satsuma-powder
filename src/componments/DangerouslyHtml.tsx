@@ -1,32 +1,40 @@
-"use client";
+import { parse } from "node-html-parser";
+import Script from "next/script";
 
-import { useEffect, useId, useRef } from "react";
+function extractScripts(html: string) {
+  const root = parse(html);
+  const { externalSrcs, inlineScripts } = root
+    .querySelectorAll("script")
+    .reduce<{ externalSrcs: string[]; inlineScripts: string[] }>(
+      (acc, el) => {
+        const src = el.getAttribute("src");
+        if (src) acc.externalSrcs.push(src);
+        else if (el.textContent.trim()) acc.inlineScripts.push(el.textContent);
+        el.remove();
+        return acc;
+      },
+      { externalSrcs: [], inlineScripts: [] },
+    );
+  return { html: root.toString(), externalSrcs, inlineScripts };
+}
 
 export const DangerouslyHtml = ({ html }: { html: string }) => {
-  const prefix = useId();
-  useEffect(() => {
-    const div = document.createElement("div");
-    div.innerHTML = html;
-    const scripts = div.querySelectorAll("script");
-    const externalScriptElementsWithId = Array.from(scripts)
-      .filter((script) => script.src)
-      .map((script, i) => {
-        const id = `script-${prefix}-${i}`;
-        script.id = id;
-        const range = document.createRange();
-        const fragment = range.createContextualFragment(script.outerHTML);
-        return [id, fragment] as const;
-      });
-    externalScriptElementsWithId.forEach(([, script]) =>
-      document.head.appendChild(script)
-    );
-    return () => {
-      externalScriptElementsWithId.forEach(([id]) =>
-        document.getElementById(id)?.remove()
-      );
-    };
-  }, [html, prefix]);
-  const div = useRef<HTMLDivElement>(null);
-
-  return <div ref={div} dangerouslySetInnerHTML={{ __html: html }} />;
+  const { html: sanitizedHtml, externalSrcs, inlineScripts } =
+    extractScripts(html);
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
+      {externalSrcs.map((src) => (
+        <Script key={src} src={src} strategy="afterInteractive" />
+      ))}
+      {inlineScripts.map((code, i) => (
+        <Script
+          key={i}
+          id={`inline-script-${i}`}
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: code }}
+        />
+      ))}
+    </>
+  );
 };
