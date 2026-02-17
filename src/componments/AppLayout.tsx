@@ -22,6 +22,7 @@ export const AppLayout = (props: PropsWithChildren<Props>) => {
         key="appHeader"
         className={classNames(styles.header, {
           [styles.hasCover]: props.coverImage,
+          [styles.nocover]: !props.coverImage && props.header,
         })}
         style={
           props?.coverImage
