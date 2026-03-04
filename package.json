@@ -35,7 +35,7 @@
     "typescript": "5.9.3",
     "zx": "8.8.5"
   },
-  "packageManager": "pnpm@10.1.0",
+  "packageManager": "pnpm@10.30.3",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@next/swc*",
