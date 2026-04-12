@@ -84,7 +84,7 @@ export async function OgImageTemplate({ title, date, description }: Props) {
           name: "Noto Sans JP",
         },
       ],
-    }
+    },
   );
 }
 
@@ -94,7 +94,7 @@ async function fetchFont(): Promise<ArrayBuffer> {
   const css = await fetch(googleFontsUrl).then((res) => res.text());
 
   const resource = css.match(
-    /src: url\((.+)\) format\('(opentype|truetype)'\)/
+    /src: url\((.+)\) format\('(opentype|truetype)'\)/,
   );
 
   if (!resource) throw new Error("Failed to fetch font");

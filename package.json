@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "format": "prettier --write .",
     "fetch:config": "./scripts/fetch-config.mjs",
     "fetch:default-style": "./scripts/fetch-default-style.mjs",
     "typecheck": "tsc --noEmit"

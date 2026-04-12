@@ -19,8 +19,11 @@ function extractScripts(html: string) {
 }
 
 export const DangerouslyHtml = ({ html }: { html: string }) => {
-  const { html: sanitizedHtml, externalSrcs, inlineScripts } =
-    extractScripts(html);
+  const {
+    html: sanitizedHtml,
+    externalSrcs,
+    inlineScripts,
+  } = extractScripts(html);
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
