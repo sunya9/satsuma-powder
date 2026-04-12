@@ -2,6 +2,13 @@
   text-autospace: normal;
 }
 
+.article img {
+  display: block;
+  max-height: max(calc(667px / 2), 33svh);
+  margin: 0 auto;
+  text-align: center;
+}
+
 .relatedPosts {
   display: grid;
   grid-template: "next prev" 1fr / 1fr 1fr;
