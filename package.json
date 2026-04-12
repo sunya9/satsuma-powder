@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "fetch:config": "./scripts/fetch-config.mjs",
     "fetch:default-style": "./scripts/fetch-default-style.mjs",
     "typecheck": "tsc --noEmit"
