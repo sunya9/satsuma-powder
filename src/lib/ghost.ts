@@ -39,19 +39,20 @@ interface GhostClient {
 }
 
 export class GhostClientImpl implements GhostClient {
-  private readonly version = "v6.0";
-
-  constructor(
-    private readonly fetch: typeof global.fetch,
-    private readonly options: GhostClientOptions,
-  ) {}
+  readonly #version = "v6.0";
+  readonly #fetch: typeof global.fetch;
+  readonly #options: GhostClientOptions;
+  constructor(fetch: typeof global.fetch, options: GhostClientOptions) {
+    this.#fetch = fetch;
+    this.#options = options;
+  }
 
   async getPosts(size: number = Infinity): Promise<PostOrPage[]> {
     const posts: PostOrPage[] = [];
     let page: number | null = 1;
     while (page && posts.length < size) {
       const limit = Math.min(size - posts.length, 100);
-      const res: PostsRespnose = await this.contentRequest<PostsRespnose>({
+      const res: PostsRespnose = await this.#contentRequest<PostsRespnose>({
         path: "/posts/",
         params: {
           limit,
@@ -66,12 +67,12 @@ export class GhostClientImpl implements GhostClient {
   }
 
   async getPost(slug: string): Promise<PostOrPage | undefined> {
-    return this.contentRequest<PostsRespnose>({
+    return this.#contentRequest<PostsRespnose>({
       path: `/posts/slug/${slug}/`,
     }).then((res) => res.posts[0]);
   }
   async getPage(slug: string): Promise<PostOrPage | undefined> {
-    return this.contentRequest<PagesRespnose>({
+    return this.#contentRequest<PagesRespnose>({
       path: `/pages/slug/${slug}/`,
     }).then((res) => res.pages[0]);
   }
@@ -79,7 +80,7 @@ export class GhostClientImpl implements GhostClient {
     publishedAt?: Nullable<string>,
   ): Promise<PostOrPage | undefined> {
     const filter = `published_at:>${encodeURIComponent(publishedAt || "")}`;
-    return this.contentRequest<PostsRespnose>({
+    return this.#contentRequest<PostsRespnose>({
       path: `/posts/`,
       params: {
         fields: ["title", "slug", "id", "published_at"],
@@ -95,7 +96,7 @@ export class GhostClientImpl implements GhostClient {
     publishedAt?: Nullable<string>,
   ): Promise<PostOrPage | undefined> {
     const filter = `published_at:<${encodeURIComponent(publishedAt || "")}`;
-    return this.contentRequest<PostsRespnose>({
+    return this.#contentRequest<PostsRespnose>({
       path: "/posts/",
       params: {
         fields: ["title", "slug", "id", "published_at"],
@@ -109,11 +110,11 @@ export class GhostClientImpl implements GhostClient {
   async getDraft(uuid: string): Promise<PostOrPage | undefined> {
     const filter = `uuid:${uuid}+status:draft`;
     const [posts, pages] = await Promise.all([
-      this.adminRequest<PostsRespnose>({
+      this.#adminRequest<PostsRespnose>({
         path: "/posts/",
         params: { limit: 1, filter, formats: ["html"] },
       }).then((res) => res.posts),
-      this.adminRequest<PagesRespnose>({
+      this.#adminRequest<PagesRespnose>({
         path: "/pages/",
         params: { limit: 1, filter, formats: ["html"] },
       }).then((res) => res.pages),
@@ -121,14 +122,14 @@ export class GhostClientImpl implements GhostClient {
     return posts[0] ?? pages[0];
   }
 
-  private async adminRequest<T>(options: { path: string; params?: Params }) {
-    const url = new URL(this.options.url);
+  async #adminRequest<T>(options: { path: string; params?: Params }) {
+    const url = new URL(this.#options.url);
     url.pathname = `/ghost/api/admin${options.path}`;
     Object.entries(options.params || {}).forEach(([key, value]) =>
       url.searchParams.append(key, `${value}`),
     );
     // from https://ghost.org/docs/admin-api/#token-generation-examples
-    const [id, secret] = this.options.adminKey.split(":");
+    const [id, secret] = this.#options.adminKey.split(":");
     const token = jwt.sign({}, Buffer.from(secret, "hex"), {
       keyid: id,
       algorithm: "HS256",
@@ -136,26 +137,26 @@ export class GhostClientImpl implements GhostClient {
       audience: `/admin/`,
     });
     const headers = new Headers({
-      "Accept-Version": this.version,
+      "Accept-Version": this.#version,
       Authorization: `Ghost ${token}`,
     });
-    return this.fetch(url, {
+    return this.#fetch(url, {
       headers,
       method: "GET",
     }).then((res) => res.json() as T);
   }
 
-  private async contentRequest<T>(options: { path: string; params?: Params }) {
-    const url = new URL(this.options.url);
+  async #contentRequest<T>(options: { path: string; params?: Params }) {
+    const url = new URL(this.#options.url);
     url.pathname = `/ghost/api/content${options.path}`;
-    url.searchParams.append("key", this.options.key);
+    url.searchParams.append("key", this.#options.key);
     Object.entries(options.params || {}).forEach(([key, value]) =>
       url.searchParams.append(key, `${value}`),
     );
     const headers = new Headers({
-      "Accept-Version": this.version,
+      "Accept-Version": this.#version,
     });
-    return this.fetch(url.toString(), {
+    return this.#fetch(url.toString(), {
       headers,
       method: "GET",
     })
