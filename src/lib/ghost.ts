@@ -46,7 +46,7 @@ export class GhostClientImpl implements GhostClient {
     private readonly options: GhostClientOptions,
   ) {}
 
-  async getPosts(size: number = 100): Promise<PostOrPage[]> {
+  async getPosts(size: number = Infinity): Promise<PostOrPage[]> {
     const posts: PostOrPage[] = [];
     let page: number | null = 1;
     while (page && posts.length < size) {
