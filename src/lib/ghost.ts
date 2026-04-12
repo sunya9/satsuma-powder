@@ -1,4 +1,4 @@
-import type { Nullable, Settings, Params, PostOrPage } from "@tryghost/content-api";
+import type { Nullable, Params, PostOrPage } from "@tryghost/content-api";
 import { env } from "./env";
 import * as jwt from "jsonwebtoken";
 
@@ -30,33 +30,41 @@ type PostsRespnose = {
 } & PostOrPageResponse;
 
 interface GhostClient {
-  getPosts(limit: number | "all"): Promise<PostOrPage[]>;
+  getPosts(size?: number): Promise<PostOrPage[]>;
   getPost(slug: string): Promise<PostOrPage | undefined>;
   getPage(slug: string): Promise<PostOrPage | undefined>;
   getNewerPost(publishedAt?: Nullable<string>): Promise<PostOrPage | undefined>;
   getOlderPost(publishedAt?: Nullable<string>): Promise<PostOrPage | undefined>;
-  getSettings(): Promise<Settings>;
   getDraft(uuid: string): Promise<PostOrPage | undefined>;
 }
 
 export class GhostClientImpl implements GhostClient {
   private readonly version = "v6.0";
-  private settings!: Settings;
 
   constructor(
     private readonly fetch: typeof global.fetch,
-    private readonly options: GhostClientOptions
+    private readonly options: GhostClientOptions,
   ) {}
 
-  async getPosts(limit: number | "all" = "all"): Promise<PostOrPage[]> {
-    return this.contentRequest<PostsRespnose>({
-      path: "/posts/",
-      params: {
-        limit,
-        fields: ["title", "slug", "published_at", "id"],
-      },
-    }).then((res) => res.posts);
+  async getPosts(size: number = 100): Promise<PostOrPage[]> {
+    const posts: PostOrPage[] = [];
+    let page: number | null = 1;
+    while (page && posts.length < size) {
+      const limit = Math.min(size - posts.length, 100);
+      const res: PostsRespnose = await this.contentRequest<PostsRespnose>({
+        path: "/posts/",
+        params: {
+          limit,
+          page: page,
+          fields: ["title", "slug", "published_at", "id"],
+        },
+      });
+      posts.push(...res.posts);
+      page = res.meta.pagination.next;
+    }
+    return posts;
   }
+
   async getPost(slug: string): Promise<PostOrPage | undefined> {
     return this.contentRequest<PostsRespnose>({
       path: `/posts/slug/${slug}/`,
@@ -68,7 +76,7 @@ export class GhostClientImpl implements GhostClient {
     }).then((res) => res.pages[0]);
   }
   async getNewerPost(
-    publishedAt?: Nullable<string>
+    publishedAt?: Nullable<string>,
   ): Promise<PostOrPage | undefined> {
     const filter = `published_at:>${encodeURIComponent(publishedAt || "")}`;
     return this.contentRequest<PostsRespnose>({
@@ -84,7 +92,7 @@ export class GhostClientImpl implements GhostClient {
   }
 
   async getOlderPost(
-    publishedAt?: Nullable<string>
+    publishedAt?: Nullable<string>,
   ): Promise<PostOrPage | undefined> {
     const filter = `published_at:<${encodeURIComponent(publishedAt || "")}`;
     return this.contentRequest<PostsRespnose>({
@@ -98,14 +106,6 @@ export class GhostClientImpl implements GhostClient {
       },
     }).then((res) => res.posts[0]);
   }
-  async getSettings(): Promise<Settings> {
-    if (!this.settings)
-      this.settings = await this.contentRequest<Settings>({
-        path: "/settings/",
-      });
-    return this.settings;
-  }
-
   async getDraft(uuid: string): Promise<PostOrPage | undefined> {
     const filter = `uuid:${uuid}+status:draft`;
     const [posts, pages] = await Promise.all([
@@ -125,7 +125,7 @@ export class GhostClientImpl implements GhostClient {
     const url = new URL(this.options.url);
     url.pathname = `/ghost/api/admin${options.path}`;
     Object.entries(options.params || {}).forEach(([key, value]) =>
-      url.searchParams.append(key, `${value}`)
+      url.searchParams.append(key, `${value}`),
     );
     // from https://ghost.org/docs/admin-api/#token-generation-examples
     const [id, secret] = this.options.adminKey.split(":");
@@ -150,7 +150,7 @@ export class GhostClientImpl implements GhostClient {
     url.pathname = `/ghost/api/content${options.path}`;
     url.searchParams.append("key", this.options.key);
     Object.entries(options.params || {}).forEach(([key, value]) =>
-      url.searchParams.append(key, `${value}`)
+      url.searchParams.append(key, `${value}`),
     );
     const headers = new Headers({
       "Accept-Version": this.version,
